@@ -66,6 +66,7 @@
     lastpass-cli
     ruby
     ag
+    fzf
   ];
 
   services.clipmenu.enable = true;
