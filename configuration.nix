@@ -69,6 +69,7 @@
     ruby
     ag
     fzf
+    libnotify
     feh
   ];
 
