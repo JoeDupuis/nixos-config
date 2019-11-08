@@ -58,6 +58,7 @@
     quasselClient
     rxvt_unicode
     htop
+    gksu
     git
     stow
     screenfetch
