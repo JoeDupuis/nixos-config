@@ -83,7 +83,7 @@
   services.emacs.defaultEditor = true;
   services.emacs.enable = true;
   services.emacs.install = true;
-
+  systemd.user.services.emacs.environment.SSH_AUTH_SOCK = "%h/.gnupg/S.gpg-agent.ssh";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
