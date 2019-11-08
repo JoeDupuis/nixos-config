@@ -59,6 +59,7 @@
     rxvt_unicode
     htop
     gksu
+    unzip
     git
     stow
     screenfetch
