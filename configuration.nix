@@ -69,6 +69,7 @@
     ruby
     ag
     fzf
+    feh
   ];
 
   services.clipmenu.enable = true;
