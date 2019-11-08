@@ -70,6 +70,7 @@
     ag
     fzf
     libnotify
+    pavucontrol
     feh
   ];
 
