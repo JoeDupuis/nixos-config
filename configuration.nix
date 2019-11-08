@@ -82,6 +82,7 @@
 
   services.emacs.defaultEditor = true;
   services.emacs.enable = true;
+  services.emacs.install = true;
 
 
   # Some programs need SUID wrappers, can be configured further or are
