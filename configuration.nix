@@ -72,6 +72,9 @@
     libnotify
     pavucontrol
     feh
+    maim
+    ffmpeg_4
+    slop
   ];
 
   services.clipmenu.enable = true;
