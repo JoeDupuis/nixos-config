@@ -59,6 +59,7 @@
     rxvt_unicode
     htop
     gksu
+    pinentry
     unzip
     git
     stow
