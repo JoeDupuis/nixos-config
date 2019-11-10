@@ -76,6 +76,7 @@
     maim
     ffmpeg_4
     slop
+    hdparm
     virtmanager
     nixops
   ];
