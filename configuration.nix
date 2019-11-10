@@ -77,6 +77,7 @@
     ffmpeg_4
     slop
     virtmanager
+    nixops
   ];
 
   services.clipmenu.enable = true;
