@@ -76,6 +76,7 @@
     maim
     ffmpeg_4
     slop
+    virtmanager
   ];
 
   services.clipmenu.enable = true;
@@ -110,6 +111,8 @@
   hardware.pulseaudio.enable = true;
 
 
+  virtualisation.libvirtd.enable = true;
+
 
 
   # Enable the X11 windowing system.
@@ -143,8 +146,13 @@
   users.users.twistedjoe = {
     isNormalUser = true;
     shell = "/run/current-system/sw/bin/fish";
-    extraGroups = [ "wheel" "networkmanager" "systemd-journal"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "systemd-journal" "libvirtd"]; # Enable ‘sudo’ for the user.
   };
+
+  # Needed for nixops libvirtd backend
+  # https://nixos.org/nixops/manual/#idm140737322394336
+  networking.firewall.checkReversePath = false;
+
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
