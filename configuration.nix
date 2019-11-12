@@ -86,6 +86,7 @@
     hdparm
     virtmanager
     nixops
+    spotify
   ];
 
   services.clipmenu.enable = true;
