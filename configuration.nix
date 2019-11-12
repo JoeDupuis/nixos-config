@@ -87,6 +87,7 @@
     virtmanager
     nixops
     spotify
+    playerctl
   ];
 
   services.clipmenu.enable = true;
