@@ -104,15 +104,16 @@
 
   services.emacs.defaultEditor = true;
   services.emacs.enable = true;
-  services.emacs.install = true;
-  systemd.user.services.emacs.environment.SSH_AUTH_SOCK = "%h/.gnupg/S.gpg-agent.ssh";
+  systemd.user.services.emacs.wants = ["ssh-agent.service"];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   #programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+
   programs.ssh.startAgent = true;
-  # List services that you want to enable:
+
+
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
