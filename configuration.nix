@@ -121,14 +121,13 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+
+  nixpkgs.overlays = [ (self: super: {xerox6280 = self.callPackage ./xerox6280 {};})];
+
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    drivers = let
-      xerox6280 = pkgs.callPackage ./xerox6280 {};
-      drivers = [ xerox6280 ];
-    in
-      drivers;
+    drivers = with pkgs; [ xerox6280 ];
   };
 
   hardware.printers = {
