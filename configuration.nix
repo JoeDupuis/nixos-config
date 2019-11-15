@@ -94,6 +94,7 @@
     nixops
     spotify
     playerctl
+    xfce.xfce4-notifyd
   ];
 
   services.clipmenu.enable = true;
