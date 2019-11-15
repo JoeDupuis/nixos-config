@@ -180,6 +180,8 @@
       enable = true;
       enableXfwm = false;
       noDesktop = true;
+      thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
+                        pkgs.xfce.thunar-volman];
     };
 
   };
