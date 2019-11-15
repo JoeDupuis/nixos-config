@@ -115,7 +115,14 @@
   # networking.firewall.enable = false;
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = let
+      xerox6280 = pkgs.callPackage ./xerox6280.nix {};
+      drivers = [ xerox6280 ];
+    in
+      drivers;
+    };
 
   # Enable sound.
   sound.enable = true;
