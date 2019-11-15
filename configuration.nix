@@ -56,6 +56,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
+    file
     emacs
     tmux
     chromium
