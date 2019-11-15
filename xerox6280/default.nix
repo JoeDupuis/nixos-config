@@ -11,9 +11,13 @@ stdenv.mkDerivation {
   };
 
   postUnpack = ''
+    (
+    cd source
     rpm2cpio English/Xerox-Phaser-6280-1.0-1.noarch.rpm | cpio -idmv
-  ''
-    installPhase = ''
+    )
+  '';
+
+  installPhase = ''
     mkdir -p $out
     mv usr/share $out/
   '';
