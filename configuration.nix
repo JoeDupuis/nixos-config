@@ -124,7 +124,7 @@
   services.printing = {
     enable = true;
     drivers = let
-      xerox6280 = pkgs.callPackage ./xerox6280.nix {};
+      xerox6280 = pkgs.callPackage ./xerox6280 {};
       drivers = [ xerox6280 ];
     in
       drivers;
