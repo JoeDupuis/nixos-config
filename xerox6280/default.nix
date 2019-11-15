@@ -1,7 +1,7 @@
 { stdenv, rpm, cpio} :
 stdenv.mkDerivation {
   pname = "Xerox-Phaser-6280";
-  version = "1.0-1";
+  version = "1.0.0.0";
 
   buildInputs = [rpm cpio];
 
@@ -25,10 +25,10 @@ stdenv.mkDerivation {
 
   meta = with stdenv.lib; {
     homepage = https://www.xerox.com/;
-    description = "Xerox Phaser 6280 print driver";
-    license = licenses.unfree;
-    #platforms = [ "x86_64-linux" ];
-    downloadPage = https://www.support.xerox.com/support/phaser-6280/downloads/enus.html?operatingSystem=linux&fileLanguage=en;
-    #maintainers = [  ];
+    description = "Print drivers for Xerox Phaser 6280 (DN/DT/N)";
+    license = licenses.unfreeRedistributable;
+    platforms = platforms.linux;
+    downloadPage = "https://www.support.xerox.com/support/phaser-6280/downloads/enus.html?operatingSystem=linux&fileLanguage=en";
+    maintainers = [ maintainers.twistedjoe ];
   };
 }
