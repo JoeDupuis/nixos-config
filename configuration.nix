@@ -95,6 +95,8 @@
     spotify
     playerctl
     xfce.xfce4-notifyd
+    gimp
+    inkscape
   ];
 
   services.clipmenu.enable = true;
