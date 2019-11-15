@@ -67,6 +67,7 @@
     htop
     gksu
     pinentry
+    zip
     unzip
     git
     stow
