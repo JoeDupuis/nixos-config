@@ -151,7 +151,7 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
+  nixpkgs.config.pulseaudio = true;
 
   virtualisation.libvirtd.enable = true;
 
