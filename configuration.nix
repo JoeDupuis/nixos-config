@@ -127,7 +127,8 @@
       drivers = [ xerox6280 ];
     in
       drivers;
-    };
+  };
+
 
   # Enable sound.
   sound.enable = true;
