@@ -84,7 +84,11 @@
     maim
     ffmpeg_4
     slop
+    ufraw
+    imagemagick7
     hdparm
+    darktable
+    rawtherapee
     virtmanager
     nixops
     spotify
