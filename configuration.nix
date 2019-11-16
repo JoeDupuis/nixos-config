@@ -97,6 +97,7 @@
     xfce.xfce4-notifyd
     gimp
     inkscape
+    ncdu
   ];
 
   services.clipmenu.enable = true;
