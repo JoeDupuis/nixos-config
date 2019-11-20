@@ -103,6 +103,7 @@
     gimp
     inkscape
     ncdu
+    openvpn
     remmina
     dbeaver
   ];
