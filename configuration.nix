@@ -59,6 +59,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
+    telnet
     file
     emacs
     tmux
