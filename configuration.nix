@@ -17,7 +17,10 @@
   networking.hostName = "birdperson"; # Define your hostname.
 #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
-
+  networking.hosts = {
+    "172.16.4.254" = ["xs"]; #xrail
+    "10.12.0.46" = ["intranet.groupesl.com"];
+  };
 
   services.avahi = {
     enable = true;
