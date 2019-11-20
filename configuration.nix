@@ -84,7 +84,6 @@
     xsel
     xclip
     lastpass-cli
-    ruby
     ag
     fzf
     libnotify
