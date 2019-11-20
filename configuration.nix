@@ -109,6 +109,8 @@
     remmina
     dbeaver
     pdfarranger
+    scripts.screenshot
+    scripts.shellfish
   ];
 
   services.clipmenu.enable = true;
