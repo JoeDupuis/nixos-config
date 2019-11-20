@@ -64,6 +64,7 @@
     emacs
     tmux
     chromium
+    firefox
     nix-index
     irssi
     man
