@@ -59,6 +59,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
+    xorg.xmodmap
     telnet
     file
     emacs
@@ -106,6 +107,7 @@
     openvpn
     remmina
     dbeaver
+    pdfarranger
   ];
 
   services.clipmenu.enable = true;
@@ -134,7 +136,10 @@
   # networking.firewall.enable = false;
 
 
-  nixpkgs.overlays = [ (self: super: {xerox6280 = self.callPackage ./xerox6280 {};})];
+  nixpkgs.overlays = [ (self: super: {
+    xerox6280 = self.callPackage ./packages/xerox6280 {};
+    pdfarranger = self.callPackage ./packages/pdfarranger.nix {};
+  })];
 
   # Enable CUPS to print documents.
   services.printing = {
