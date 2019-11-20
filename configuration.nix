@@ -103,6 +103,7 @@
     gimp
     inkscape
     ncdu
+    dbeaver
   ];
 
   services.clipmenu.enable = true;
