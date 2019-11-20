@@ -1,0 +1,123 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require 'fileutils'
+require 'securerandom'
+
+RSYNC_URL_HOST="https://joescreenshot.nfshost.com"
+SSH_HOST="twistedjoe_joescreenshot@ssh.phx.nearlyfreespeech.net"
+RSYNC_DESTINATION="#{SSH_HOST}:/home/public"
+
+SSH_KEY_FINGERPRINT = [
+  'SHA256:65Vi/Af+auZKJ1zpcz0nAub1Hns8vk6kDSio5lY6bHw',
+  'SHA256:JOhV8zpcDN0z7V+dB+46FRxT5B3pf5wSyg+723iGuWQ',
+]
+options = {local_parent: "#{ENV['HOME']}/Pictures/screenshots",
+	   mode: :screenshot
+	  }
+
+OptionParser.new do |opts|
+  opts.on("-v", "--video", "record video") do |w|
+    options[:mode] = :video
+    options[:local_parent] =  "#{ENV['HOME']}/Videos/screencast/"
+  end
+end.parse!
+
+def screencast filename
+  slop = %x(slop -f slop -f '%x %y %w %h %g %i' -c 1,0,0,0 -b 10).split
+  x = slop[0]
+  y = slop[1]
+  w = slop[2].to_i/2*2
+  h = slop[3].to_i/2*2
+  screencastcall = []
+  screencastcall << 'ffmpeg'
+  screencastcall << '-f x11grab'
+  screencastcall << %(-s "#{w}"x"#{h}" -i ":0.0+#{x},#{y}")
+  screencastcall << '-pix_fmt yuv420p'
+  screencastcall << filename
+  puts "#{screencastcall.join ' '}"
+
+  %x(#{screencastcall.join ' '})
+end
+
+
+def screenshot filename
+  screenshot_call = []
+  screenshot_call << 'maim'
+  screenshot_call << '--nodecorations=2'
+  screenshot_call << '--hidecursor'
+  screenshot_call << '--noopengl'
+  screenshot_call << '-b 10 -c 0.5,0.5,0.8,0.5'
+  screenshot_call << '-s'
+  screenshot_call << filename
+  %x(#{screenshot_call.join ' '})
+end
+
+
+def copy_path url
+  xclip_call = []
+  xclip_call << 'echo'
+  xclip_call << "#{url}"
+  xclip_call << '|'
+  xclip_call << 'xclip'
+  xclip_call << '-sel'
+  xclip_call << 'clip'
+
+  system("#{xclip_call.join ' '}")
+end
+
+
+def rsync parent_dir, input, destination
+  rsync_call = []
+  rsync_call << 'ssh'
+  rsync_call << SSH_HOST
+  rsync_call << %('mkdir -p #{File.dirname input}')
+
+  %x(#{rsync_call.join ' '})
+  puts rsync_call.join ' '
+
+  rsync_call = []
+  rsync_call << 'rsync'
+#  rsync_call << '--relative'
+  rsync_call << "#{parent_dir}/#{input}"
+  rsync_call << "#{destination}/#{input}"
+
+
+
+    %x(#{rsync_call.join ' '})
+end
+
+def load_ssh_key
+  key_loaded =   SSH_KEY_FINGERPRINT.any? {|fingerprint | %x(ssh-add -l).include? fingerprint}
+  unless key_loaded
+    %x(lpass login joe.dupuis@xylio.net)
+    %x(load-ssh-key)
+  end
+  key_loaded =   SSH_KEY_FINGERPRINT.any? {|fingerprint| %x(ssh-add -l).include? fingerprint}
+  raise 'SSH key not loaded' unless key_loaded
+end
+def notify
+  %x(notify-send 'Screenshot uploaded' -t 3000)
+end
+
+extension = 'png'
+extension = 'mp4' if options[:mode] == :video
+imagename = "#{Time.now.strftime('%Y%m%d%H%M%S')}_#{SecureRandom.hex(5)}.#{extension}"
+date_folder = Time.now.strftime('%Y/%m')
+
+filename = "#{date_folder}/#{imagename}"
+local_filename = "#{options[:local_parent]}/#{filename}"
+distant_filename = "#{RSYNC_URL_HOST}/#{filename}"
+FileUtils.mkdir_p(File.dirname(local_filename))
+
+
+load_ssh_key
+if options[:mode] == :video then
+  copy_path distant_filename
+  screencast local_filename
+else
+  screenshot local_filename
+end
+copy_path distant_filename
+rsync options[:local_parent], filename, RSYNC_DESTINATION
+
+notify
