@@ -99,7 +99,6 @@
     rawtherapee
     virtmanager
     nixops
-    spotify
     playerctl
     xfce.xfce4-notifyd
     gimp
@@ -111,6 +110,7 @@
     pdfarranger
     scripts.screenshot
     scripts.shellfish
+    scripts.spotify
   ];
 
   services.clipmenu.enable = true;
