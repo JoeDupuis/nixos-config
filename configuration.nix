@@ -172,7 +172,7 @@
   hardware.pulseaudio.enable = true;
   nixpkgs.config.pulseaudio = true;
 
-  virtualisation.libvirtd.enable = true;
+
 
 
 
@@ -209,7 +209,14 @@
   users.users.twistedjoe = {
     isNormalUser = true;
     shell = "/run/current-system/sw/bin/fish";
-    extraGroups = [ "wheel" "networkmanager" "systemd-journal" "libvirtd"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "systemd-journal" "libvirtd" "vboxusers"]; # Enable ‘sudo’ for the user.
+  };
+
+
+  virtualisation = {
+    libvirtd.enable = true;
+    virtualbox.host.enable = true;
+    virtualbox.host.enableExtensionPack = true;
   };
 
   # Needed for nixops libvirtd backend
