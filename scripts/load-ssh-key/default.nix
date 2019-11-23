@@ -1,4 +1,9 @@
-{writeShellScriptBin, cat-askpass, lastpass-cli, ...} :
+{writeShellScriptBin, writeShellScript, coreutils, lastpass-cli, ...} :
+let
+  cat-askpass = (writeShellScript "cat-askpass" ''
+      exec ${coreutils}/bin/cat
+  '');
+in
 ( writeShellScriptBin "load-ssh-key" ''
   for filename in ~/.ssh/*.pub; do
 	    path=''${filename%".pub"}

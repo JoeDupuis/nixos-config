@@ -113,6 +113,7 @@
     scripts.screenshot
     scripts.shellfish
     scripts.spotify
+    scripts.load-ssh-key
   ];
 
   services.clipmenu.enable = true;
