@@ -109,6 +109,7 @@
     dbeaver
     pdfarranger
     linphone
+    gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
     scripts.spotify
