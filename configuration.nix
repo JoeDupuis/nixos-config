@@ -108,6 +108,7 @@
     remmina
     dbeaver
     pdfarranger
+    linphone
     scripts.screenshot
     scripts.shellfish
     scripts.spotify
