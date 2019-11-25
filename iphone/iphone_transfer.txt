@@ -1,0 +1,10 @@
+    ideviceinstaller
+    ifuse
+    libimobiledevice
+    libusbmuxd
+    usbmuxd
+
+  #to remove, iphone garbage
+  # iphone.enable = true;
+  # iphone.user = "twistedjoe";
+  services.dbus.packages = with pkgs; [ gnome3.dconf gnome2.GConf ];
