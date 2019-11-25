@@ -69,6 +69,7 @@
     telnet
     file
     emacs
+    ranger
     tmux
     chromium
     firefox
