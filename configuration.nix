@@ -115,6 +115,7 @@
     dbeaver
     pdfarranger
     linphone
+    sshfs
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
