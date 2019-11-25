@@ -22,6 +22,9 @@
   networking.hosts = {
     "172.16.4.254" = ["xs"]; #xrail
     "10.12.0.46" = ["intranet.groupesl.com"];
+    "167.99.27.107" = ["stage.myvibe.life" "master.myvibe.life"];
+    "157.230.74.252" = ["prod.myvibe.life"];
+    "104.27.157.125" = ["production.myvibe.life"];
   };
 
   services.avahi = {
