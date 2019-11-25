@@ -102,6 +102,7 @@
     darktable
     rawtherapee
     virtmanager
+    OVMF
     nixops
     playerctl
     xfce.xfce4-notifyd
@@ -222,6 +223,7 @@
 
   virtualisation = {
     libvirtd.enable = true;
+    libvirtd.qemuOvmf = true;
     virtualbox.host.enable = true;
     virtualbox.host.enableExtensionPack = true;
   };
