@@ -116,6 +116,7 @@
     pdfarranger
     linphone
     sshfs
+    unison
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
