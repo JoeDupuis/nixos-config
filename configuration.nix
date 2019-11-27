@@ -128,6 +128,7 @@
     mpv
     ffmpegthumbnailer
     shotwell
+    ghostscript
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
