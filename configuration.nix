@@ -121,6 +121,7 @@
     unison
     autorandr
     mpv
+    ffmpegthumbnailer
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
