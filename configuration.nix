@@ -167,6 +167,7 @@
   nixpkgs.overlays = [ (self: super: {
     xerox6280 = self.callPackage ./packages/xerox6280 {};
     pdfarranger = self.callPackage ./packages/pdfarranger.nix {};
+    sane-backends-git  = self.callPackage ./packages/sane-backends/git.nix (config.sane or {});
   })];
 
   # Enable CUPS to print documents.
