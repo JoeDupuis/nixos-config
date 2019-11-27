@@ -193,6 +193,29 @@
     ];
   };
 
+
+
+  services.borgbackup.jobs = {
+    twistedjoe = {
+      user = "twistedjoe";
+      group = "users";
+      encryption.mode = "none";
+      repo = "/home/twistedjoe/archives/borg_backup";
+      paths = [
+        "/home/twistedjoe/Downloads"
+        "/home/twistedjoe/Documents"
+        "/home/twistedjoe/Pictures"
+        "/home/twistedjoe/Videos"
+        "/home/twistedjoe/Music"
+        "/home/twistedjoe/Desktop"
+        "/home/twistedjoe/Public"
+        "/home/twistedjoe/"
+        "/home/twistedjoe/.config/chromium"
+      ];
+      compression = "lz4";
+    };
+  };
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
