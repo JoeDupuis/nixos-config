@@ -119,6 +119,7 @@
     linphone
     sshfs
     unison
+    autorandr
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
