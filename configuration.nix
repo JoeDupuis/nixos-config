@@ -127,6 +127,7 @@
     autorandr
     mpv
     ffmpegthumbnailer
+    shotwell
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
