@@ -186,7 +186,8 @@
   nixpkgs.config.pulseaudio = true;
 
 
-
+  programs.dconf.enable = true;
+  services.dbus.packages = [ pkgs.gnome3.dconf ];
 
 
   # Enable the X11 windowing system.
