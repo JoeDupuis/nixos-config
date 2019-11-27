@@ -129,6 +129,8 @@
     ffmpegthumbnailer
     shotwell
     ghostscript
+    xsane
+    simple-scan
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
