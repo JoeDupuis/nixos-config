@@ -15,17 +15,34 @@
   boot.kernelModules = [ "kvm-intel" "wl" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
-  boot.initrd.luks.devices = [{
-    name = "LUKS-BIRDPERSON-ROOT";
-    device = "/dev/disk/by-partlabel/BIRDPERSON-ROOT";
-    allowDiscards = true;
-  }];
+
+
+  boot.initrd.luks.devices = [
+    {
+      name = "LUKS-BIRDPERSON-ROOT";
+      device = "/dev/disk/by-partlabel/BIRDPERSON-ROOT";
+      allowDiscards = true;
+    }
+
+    {
+      name = "LUKS-BIRDPERSON-ARCHIVES";
+      device = "/dev/disk/by-partlabel/BIRDPERSON-ARCHIVES";
+      allowDiscards = true;
+    }
+
+  ];
 
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
+
+  fileSystems."/home/twistedjoe/archives" =
+    { device = "/dev/disk/by-label/archives";
+      fsType = "ext4";
+    };
+
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-partlabel/EFI-BIRDPERSON";
