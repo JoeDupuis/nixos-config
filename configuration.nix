@@ -120,6 +120,7 @@
     sshfs
     unison
     autorandr
+    mpv
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
