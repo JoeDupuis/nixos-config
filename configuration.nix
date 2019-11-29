@@ -197,8 +197,6 @@
 
   services.borgbackup.jobs = {
     twistedjoe = {
-      user = "twistedjoe";
-      group = "users";
       encryption.mode = "none";
       repo = "/home/twistedjoe/archives/borg_backup";
       paths = [
@@ -209,7 +207,6 @@
         "/home/twistedjoe/Music"
         "/home/twistedjoe/Desktop"
         "/home/twistedjoe/Public"
-        "/home/twistedjoe/"
         "/home/twistedjoe/.config/chromium"
       ];
       compression = "lz4";
