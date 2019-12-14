@@ -125,6 +125,7 @@
     remmina
     dbeaver
     libreoffice
+    okular
     pdfarranger
     linphone
     sshfs
