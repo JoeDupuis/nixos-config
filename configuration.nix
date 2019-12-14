@@ -199,6 +199,7 @@
           "Option2" = "False"; #Storage Device
           "Option3" = "True"; #Duplex unit
           "PageSize" = "Letter";
+          "Smoothing" = "False";
         };
       }
     ];
