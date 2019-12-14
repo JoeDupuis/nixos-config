@@ -212,6 +212,8 @@
     twistedjoe = {
       encryption.mode = "none";
       repo = "/home/twistedjoe/archives/borg_backup";
+      user = "twistedjoe";
+      group = "users";
       paths = [
         "/home/twistedjoe/Downloads"
         "/home/twistedjoe/Documents"
