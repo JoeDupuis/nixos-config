@@ -73,6 +73,7 @@
     usbutils
     nixos-generators
     wget
+    gparted
     xorg.xmodmap
     telnet
     file
