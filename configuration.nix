@@ -124,6 +124,7 @@
     openvpn
     remmina
     dbeaver
+    libreoffice
     pdfarranger
     linphone
     sshfs
