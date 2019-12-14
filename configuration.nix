@@ -184,7 +184,7 @@
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    drivers = with pkgs; [ xerox6280 ];
+    drivers = with pkgs; [ xerox6280 brlaser ];
   };
 
   hardware.printers = {
