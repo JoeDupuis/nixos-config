@@ -283,8 +283,8 @@
   virtualisation = {
     libvirtd.enable = true;
     libvirtd.qemuOvmf = true;
-    virtualbox.host.enable = true;
-    virtualbox.host.enableExtensionPack = true;
+    # virtualbox.host.enable = true;
+    # virtualbox.host.enableExtensionPack = true;
   };
 
   # Needed for nixops libvirtd backend
