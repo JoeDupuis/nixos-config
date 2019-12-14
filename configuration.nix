@@ -71,6 +71,7 @@
   environment.systemPackages = with pkgs; [
     pciutils
     usbutils
+    nixos-generators
     wget
     xorg.xmodmap
     telnet
