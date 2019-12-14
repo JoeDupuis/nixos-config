@@ -206,6 +206,7 @@
   };
 
 
+  programs.adb.enable = true;
 
   services.borgbackup.jobs = {
     twistedjoe = {
