@@ -135,6 +135,7 @@
     ffmpegthumbnailer
     shotwell
     ghostscript
+    thunderbolt
     xsane
     simple-scan
     gitAndTools.gitflow
