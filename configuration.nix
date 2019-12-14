@@ -139,6 +139,7 @@
     thunderbolt
     xsane
     simple-scan
+    lz4
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
