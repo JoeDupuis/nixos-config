@@ -78,6 +78,7 @@
     xorg.xmodmap
     telnet
     file
+    ntfs3g
     emacs
     ranger
     tmux
