@@ -135,6 +135,7 @@
     ffmpegthumbnailer
     shotwell
     ghostscript
+    lxappearance
     thunderbolt
     xsane
     simple-scan
