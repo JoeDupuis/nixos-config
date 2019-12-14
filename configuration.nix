@@ -235,7 +235,8 @@
 
 
   programs.dconf.enable = true;
-  services.dbus.packages = [ pkgs.gnome3.dconf ];
+  services.dbus.packages = with pkgs; [ xfce.dconf gnome2.GConf ];
+
 
 
   # Enable the X11 windowing system.
