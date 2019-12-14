@@ -140,6 +140,7 @@
     xsane
     simple-scan
     lz4
+    hfsprogs
     gitAndTools.gitflow
     scripts.screenshot
     scripts.shellfish
