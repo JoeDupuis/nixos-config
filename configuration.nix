@@ -74,6 +74,7 @@
     nixos-generators
     wget
     gparted
+    polkit_gnome
     xorg.xmodmap
     telnet
     file
