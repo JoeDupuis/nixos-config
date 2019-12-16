@@ -9,12 +9,26 @@
     ];
 
 
+
   services.xserver.videoDrivers = ["modesetting"];
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "vfio-pci" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" "wl" ];
+  boot.kernelParams = [ "intel_iommu=on" ];
+  boot.kernelModules = [ "kvm-intel" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" "wl"];
+  boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
+
+  #nvidia video & audio
+
+  # IOMMU Group 1   00:01.0 PCI bridge [0604]: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen Core Processor PCIe Controller (x16) [8086:1901] (rev 07)
+  # IOMMU Group 1   00:01.1 PCI bridge [0604]: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen Core Processor PCIe Controller (x8) [8086:1905] (rev 07)
+  # IOMMU Group 1   01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM204 [GeForce GTX 970] [10de:13c2] (rev a1)
+  # IOMMU Group 1   01:00.1 Audio device [0403]: NVIDIA Corporation GM204 High Definition Audio Controller [10de:0fbb] (rev a1)
+  # IOMMU Group 14  05:00.0 USB controller [0c03]: ASMedia Technology Inc. ASM1142 USB 3.1 Host Controller [1b21:1242]
+  #
+  boot.extraModprobeConfig ="options vfio-pci ids=8086:1901,10de:13c2,10de:0fbb,1b21:1242";
+  #boot.extraModprobeConfig ="options vfio-pci ids=8086:1901,8086:1905,10de:13c2,10de:0fbb,1b21:1242";
 
 
   boot.initrd.luks.devices = [
@@ -31,6 +45,7 @@
     }
 
   ];
+
 
 
   fileSystems."/" =
