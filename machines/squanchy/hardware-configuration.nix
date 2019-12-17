@@ -5,32 +5,25 @@
 
 {
   imports =
-    [];
+    [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+    ];
 
 
 
-  services.xserver.videoDrivers = ["modesetting"];
-  boot.initrd.availableKernelModules = [ "vfio-pci" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" "wl"];
-  boot.extraModulePackages = [  ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
 
-
-  # boot.initrd.luks.devices = [
-  #   {
-  #     name = "LUKS-BIRDPERSON-ROOT";
-  #     device = "/dev/disk/by-partlabel/BIRDPERSON-ROOT";
-  #     allowDiscards = true;
-  #   }
-
-  #   {
-  #     name = "LUKS-BIRDPERSON-ARCHIVES";
-  #     device = "/dev/disk/by-partlabel/BIRDPERSON-ARCHIVES";
-  #     allowDiscards = true;
-  #   }
-
-  # ];
+  boot.initrd.luks.devices = [
+    {
+      name = "LUKS-SQUANCHY-ROOT";
+      device = "/dev/disk/by-partlabel/SQUANCHY-ROOT";
+      allowDiscards = true;
+    }
+  ];
 
 
 
@@ -41,15 +34,15 @@
 
 
 
-  # fileSystems."/boot" =
-  #   { device = "/dev/disk/by-partlabel/EFI-BIRDPERSON";
-  #     fsType = "vfat";
-  #   };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-partlabel/EFI-SQUANCHY";
+      fsType = "vfat";
+    };
 
-  # swapDevices =
-  #   [ { device = "/dev/disk/by-label/swap"; }
-  #   ];
+  swapDevices =
+    [ { device = "/dev/disk/by-label/swap"; }
+    ];
 
-  # nix.maxJobs = lib.mkDefault 8;
-  # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  nix.maxJobs = lib.mkDefault 4;
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
