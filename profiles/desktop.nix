@@ -118,26 +118,28 @@
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    drivers = with pkgs; [ xerox6280 brlaser ];
+    drivers = with pkgs; [
+      #xerox6280
+      brlaser ];
   };
 
-  hardware.printers = {
-    ensurePrinters = [
-      {
-        name = "Xerox";
-        deviceUri = "ipp://192.168.1.249/ipp";
-        model = "Xerox/Xerox_Phaser_6280DN.ppd.gz";
-        ppdOptions = {
-          "InstalledMemory" = "256Meg";
-          "Option1" = "None"; #Tray config
-          "Option2" = "False"; #Storage Device
-          "Option3" = "True"; #Duplex unit
-          "PageSize" = "Letter";
-          "Smoothing" = "False";
-        };
-      }
-    ];
-  };
+  # hardware.printers = {
+  #   ensurePrinters = [
+  #     {
+  #       name = "Xerox";
+  #       deviceUri = "ipp://192.168.1.249/ipp";
+  #       model = "Xerox/Xerox_Phaser_6280DN.ppd.gz";
+  #       ppdOptions = {
+  #         "InstalledMemory" = "256Meg";
+  #         "Option1" = "None"; #Tray config
+  #         "Option2" = "False"; #Storage Device
+  #         "Option3" = "True"; #Duplex unit
+  #         "PageSize" = "Letter";
+  #         "Smoothing" = "False";
+  #       };
+  #     }
+  #   ];
+  # };
 
   programs.adb.enable = true;
 

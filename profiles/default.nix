@@ -38,7 +38,7 @@
 
   nixpkgs.overlays = [ (self: super: {
     nixos-generators = self.callPackage ../packages/nixos-generators {};
-    xerox6280 = self.callPackage ../packages/xerox6280 {};
+    #xerox6280 = self.callPackage ../packages/xerox6280 {};
     pdfarranger = self.callPackage ../packages/pdfarranger.nix {};
     sane-backends-git  = self.callPackage ../packages/sane-backends/git.nix (config.sane or {});
   })];
