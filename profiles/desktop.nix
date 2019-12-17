@@ -58,7 +58,7 @@
     libreoffice
     okular
     pdfarranger
-    linphone
+    #linphone
     sshfs
     unison
     autorandr
