@@ -3,6 +3,7 @@
   imports = [
     ./default.nix
     ../modules/avahi.nix
+    ../modules/zerotier.nix
   ];
 
   services.fstrim.enable = true;
