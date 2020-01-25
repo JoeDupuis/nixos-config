@@ -89,7 +89,7 @@
     "167.99.27.107" = ["stage.myvibe.life" "master.myvibe.life"];
     "157.230.74.252" = ["prod.myvibe.life"];
     "104.27.157.125" = ["production.myvibe.life"];
-    "192.168.122.64" = ["transportmmd.ca" "www.transportmmd.ca"];
+    "192.168.122.57" = ["transportmmd.ca" "www.transportmmd.ca"];
   };
 
 
