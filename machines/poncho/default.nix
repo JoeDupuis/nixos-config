@@ -10,7 +10,7 @@
 
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/disk/by-label/nixos";
+  boot.loader.grub.device = "/dev/sda";
 
 
   # This value determines the NixOS release with which your system is to be
