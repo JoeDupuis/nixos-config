@@ -60,6 +60,7 @@
     pdfarranger
     #linphone
     sshfs
+    filezilla
     unison
     autorandr
     mpv
