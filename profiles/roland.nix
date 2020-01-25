@@ -110,6 +110,10 @@
 
 
 
+  services.xrdp.enable = true;
+  #networking.firewall.allowedTCPPorts = [ 3389 ];
+
+
   virtualisation = {
     libvirtd.enable = true;
     libvirtd.qemuOvmf = true;
