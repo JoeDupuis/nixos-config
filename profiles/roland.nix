@@ -78,7 +78,7 @@
         enable = true;
       };
     };
-    desktopManager.plasma5.enable = true;
+    #desktopManager.plasma5.enable = true;
     desktopManager.xfce = {
       enable = true;
       thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
