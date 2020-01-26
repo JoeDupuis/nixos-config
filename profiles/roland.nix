@@ -12,7 +12,7 @@
 
   environment.systemPackages = with pkgs; [
     gparted
-    tigervnc
+    x11vnc
     polkit_gnome
     xorg.xmodmap
     ntfs3g
@@ -113,7 +113,6 @@
 
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = 	"/run/current-system/sw/bin/xfce4-session";
-
 
   virtualisation = {
     libvirtd.enable = true;
