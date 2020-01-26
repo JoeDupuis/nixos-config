@@ -112,7 +112,7 @@
 
 
   services.xrdp.enable = true;
-  #networking.firewall.allowedTCPPorts = [ 3389 ];
+  services.xrdp.defaultWindowManager = 	"/run/current-system/sw/bin/xfce4-session";
 
 
   virtualisation = {
