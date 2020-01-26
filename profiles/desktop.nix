@@ -13,7 +13,7 @@
 
   environment.systemPackages = with pkgs; [
     gparted
-    tightvnc
+    tigervnc
     pciutils
     usbutils
     nixos-generators
