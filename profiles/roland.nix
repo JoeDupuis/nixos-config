@@ -112,6 +112,7 @@
 
     roland = {
       isNormalUser = true;
+      extraGroups = ["libvirtd"];
     };
 
     jaqueline = {
