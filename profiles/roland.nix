@@ -39,6 +39,12 @@
 
 
 
+  i18n = {
+    #consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "us";
+    defaultLocale =  pkgs.lib.mkForce "fr_CA.UTF-8";
+  };
+
   networking.networkmanager.enable = true;
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -74,6 +80,10 @@
 
   services.xserver = {
     enable = true;
+    exportConfiguration = true; #needed to list xserver kb layouts
+    layout = "ca";
+    #xkbVariant = "fr";
+    #xkbModel = "pc105";
     displayManager = {
       lightdm = {
         enable = true;
