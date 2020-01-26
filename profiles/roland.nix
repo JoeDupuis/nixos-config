@@ -12,6 +12,7 @@
 
   environment.systemPackages = with pkgs; [
     gparted
+    tightvnc
     polkit_gnome
     xorg.xmodmap
     ntfs3g
