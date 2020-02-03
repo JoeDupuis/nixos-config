@@ -67,8 +67,10 @@
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    drivers = with pkgs; [];
+    drivers = with pkgs; [
+      brlaser ];
   };
+
 
   # Enable sound.
   sound.enable = true;
