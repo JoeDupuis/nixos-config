@@ -13,6 +13,8 @@
   environment.systemPackages = with pkgs; [
     gparted
     x11vnc
+    pciutils
+    usbutils
     polkit_gnome
     xorg.xmodmap
     ntfs3g
