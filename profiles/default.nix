@@ -13,6 +13,10 @@
 
   };
 
+
+  services.fail2ban.enable = true;
+
+
   # Set your time zone.
   time.timeZone = "America/Montreal";
 
