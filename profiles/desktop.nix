@@ -80,6 +80,7 @@
     scripts.shellfish
     scripts.spotify
     scripts.load-ssh-key
+    transmission-gtk
   ];
 
 
