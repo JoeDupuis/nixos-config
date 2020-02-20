@@ -40,7 +40,9 @@
   services.openssh.enable = true;
   services.openssh.passwordAuthentication = false;
 
-  nixpkgs.overlays = [ (self: super: {
+  nixpkgs.overlays = [
+    (import ../overlay/nixops.nix)
+    (self: super: {
     nixos-generators = self.callPackage ../packages/nixos-generators {};
     #xerox6280 = self.callPackage ../packages/xerox6280 {};
     pdfarranger = self.callPackage ../packages/pdfarranger.nix {};
