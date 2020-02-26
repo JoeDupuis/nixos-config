@@ -12,7 +12,7 @@
 
   environment.systemPackages = with pkgs; [
     gparted
-    tigervnc
+    x11vnc
     polkit_gnome
     xorg.xmodmap
     ntfs3g
@@ -38,6 +38,12 @@
 
 
 
+
+  i18n = {
+    #consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "us";
+    defaultLocale =  pkgs.lib.mkForce "fr_CA.UTF-8";
+  };
 
   networking.networkmanager.enable = true;
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -74,6 +80,10 @@
 
   services.xserver = {
     enable = true;
+    exportConfiguration = true; #needed to list xserver kb layouts
+    layout = "ca";
+    #xkbVariant = "fr";
+    #xkbModel = "pc105";
     displayManager = {
       lightdm = {
         enable = true;
@@ -102,6 +112,7 @@
 
     roland = {
       isNormalUser = true;
+      extraGroups = ["libvirtd"];
     };
 
     jaqueline = {
@@ -113,7 +124,6 @@
 
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = 	"/run/current-system/sw/bin/xfce4-session";
-
 
   virtualisation = {
     libvirtd.enable = true;
