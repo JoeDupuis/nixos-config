@@ -38,7 +38,7 @@
     pavucontrol
     feh
     maim
-    ffmpeg_4
+    ffmpeg-full
     slop
     ufraw
     imagemagick7
