@@ -78,6 +78,7 @@
     scripts.spotify
     scripts.load-ssh-key
     exiftool
+    vlc
   ];
 
 
