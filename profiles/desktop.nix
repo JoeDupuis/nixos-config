@@ -22,6 +22,7 @@
     telnet
     ntfs3g
     chromium
+    google-chrome
     firefox
     nix-index
     irssi
