@@ -92,7 +92,9 @@
     "167.99.27.107" = ["stage.myvibe.life" "master.myvibe.life"];
     "157.230.74.252" = ["prod.myvibe.life"];
     "104.27.157.125" = ["production.myvibe.life"];
-    "192.168.122.57" = ["transportmmd.ca" "www.transportmmd.ca"];
+    "172.16.100.250" = ["ergo.test"];
+    "192.168.122.42" = ["jira.xrailtest.com" "test.xrailtest.com"];
+    #"192.168.122.57" = ["transportmmd.ca" "www.transportmmd.ca"];
   };
 
 
