@@ -27,9 +27,10 @@ in {
     {
       boot.kernelModules = [ "vfio_iommu_type1"];
       boot.kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" ];
+      boot.kernelPackages = pkgs.linuxPackages_4_19;
       boot.kernelPatches = [ {
         name = "add-acs-overrides";
-        patch = ./add-acs-overrides.patch;
+        patch = ./add-acs-overrides_4_19.patch;
       }];
     }
 
