@@ -82,6 +82,7 @@
     scripts.load-ssh-key
     transmission-gtk
     gvfs
+    gnupg
   ];
 
 
