@@ -81,6 +81,7 @@
     scripts.spotify
     scripts.load-ssh-key
     transmission-gtk
+    gvfs
   ];
 
 
