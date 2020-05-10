@@ -1,26 +1,23 @@
 { config, lib, pkgs, ... }:
 {
-  boot.initrd.luks.devices = [
-    {
-      name = "LUKS-BIRDPERSON-ROOT";
+  boot.initrd.luks.devices = {
+    LUKS-BIRDPERSON-ROOT = {
       device = "/dev/disk/by-partlabel/BIRDPERSON-ROOT";
       allowDiscards = true;
-    }
+    };
 
-    {
-      name = "LUKS-BIRDPERSON-ROOT-2";
+    LUKS-BIRDPERSON-ROOT-2 = {
       device = "/dev/disk/by-partlabel/BIRDPERSON-ROOT-2";
       allowDiscards = true;
-    }
+    };
 
 
-    {
-      name = "LUKS-BIRDPERSON-ARCHIVES";
+    LUKS-BIRDPERSON-ARCHIVES = {
       device = "/dev/disk/by-partlabel/BIRDPERSON-ARCHIVES";
       allowDiscards = true;
-    }
+    };
 
-  ];
+  };
 
 
 

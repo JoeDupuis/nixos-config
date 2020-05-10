@@ -4,14 +4,15 @@
     ../scripts
   ];
 
-  i18n = {
-    #consoleFont = "Lat2-Terminus16";
-    consoleFont = "ter-i32b";
-    consoleKeyMap = "us";
-    defaultLocale = "en_US.UTF-8";
-    consolePackages = with pkgs; [terminus_font];
+  i18n.defaultLocale = "en_US.UTF-8";
 
+  console = {
+    packages = with pkgs; [terminus_font];
+    keyMap = "us";
+    font = "ter-i32b";
+    #font = "Lat2-Terminus16";
   };
+
 
 
   services.fail2ban.enable = true;
