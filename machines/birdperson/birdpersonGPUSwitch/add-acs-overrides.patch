@@ -25,7 +25,7 @@ index f439de848658..6431f60a56f4 100644
 @@ -3355,6 +3355,106 @@ static void quirk_no_bus_reset(struct pci_dev *dev)
  	dev->dev_flags |= PCI_DEV_FLAGS_NO_BUS_RESET;
  }
- 
+
 +static bool acs_on_downstream;
 +static bool acs_on_multifunction;
 +
@@ -136,4 +136,3 @@ index f439de848658..6431f60a56f4 100644
 +   { PCI_ANY_ID, PCI_ANY_ID, pcie_acs_overrides },
  	{ 0 }
  };
-
