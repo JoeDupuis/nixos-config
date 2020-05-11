@@ -24,7 +24,7 @@ in {
   };
 
   config = with lib; (mkMerge [
-    {
+    (mkIf (cfg.enable){
       boot.kernelModules = [ "vfio_iommu_type1"];
       boot.kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" ];
       boot.kernelPackages = pkgs.linuxPackages_4_19;
@@ -32,7 +32,7 @@ in {
         name = "add-acs-overrides";
         patch = ./add-acs-overrides_4_19.patch;
       }];
-    }
+    })
 
     (mkIf (cfg.enable && cfg.gpu == "nvidia") {
       boot.extraModprobeConfig = usb + amd;
