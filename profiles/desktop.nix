@@ -4,6 +4,7 @@
     ./default.nix
     ../modules/avahi.nix
     ../modules/zerotier.nix
+    ./hosts.nix
   ];
 
   services.fstrim.enable = true;
@@ -88,17 +89,6 @@
 
 
 
-  networking.hosts = {
-    "172.16.4.254" = ["xs"]; #xrail
-    "172.16.4.252" = ["xrailvm"];
-    "10.12.0.46" = ["intranet.groupesl.com"];
-    "167.99.27.107" = ["stage.myvibe.life" "master.myvibe.life"];
-    "157.230.74.252" = ["prod.myvibe.life"];
-    "104.27.157.125" = ["production.myvibe.life"];
-    "172.16.100.250" = ["ergo.test"];
-    "192.168.122.42" = ["jira.xrailtest.com" "test.xrailtest.com"];
-    #"192.168.122.57" = ["transportmmd.ca" "www.transportmmd.ca"];
-  };
 
 
 
