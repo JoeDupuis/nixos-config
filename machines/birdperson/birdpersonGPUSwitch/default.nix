@@ -18,13 +18,13 @@ in {
   options.birdpersonGPUSwitch = with lib; {
     enable = mkEnableOption "Birdperson GPU switch";
     gpu = mkOption {
-      type = types.enum ["noACS" "nvidia" "amd" "intel"];
+      type = types.enum ["nvidia" "amd" "intel"];
       default = "nvidia";
     };
   };
 
-  config = with lib; (mkMerge [
-    (mkIf (cfg.enable){
+  config = with lib; mkIf cfg.enable (mkMerge [
+    {
       boot.kernelModules = [ "vfio_iommu_type1"];
       boot.kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" ];
       boot.kernelPackages = pkgs.linuxPackages_4_19;
@@ -32,7 +32,7 @@ in {
         name = "add-acs-overrides";
         patch = ./add-acs-overrides_4_19.patch;
       }];
-    })
+    }
 
     (mkIf (cfg.enable && cfg.gpu == "nvidia") {
       boot.extraModprobeConfig = usb + amd;
