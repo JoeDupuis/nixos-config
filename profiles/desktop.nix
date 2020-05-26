@@ -13,6 +13,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   environment.systemPackages = with pkgs; [
+    discord
     gparted
     tigervnc
     pciutils
