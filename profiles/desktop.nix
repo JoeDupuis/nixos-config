@@ -4,6 +4,7 @@
     ./default.nix
     ../modules/avahi.nix
     ../modules/zerotier.nix
+    #../modules/teamviewer.nix
     ./hosts.nix
   ];
 
