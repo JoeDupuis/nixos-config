@@ -26,7 +26,7 @@
       fsType = "ext4";
     };
 
-  fileSystems."/archives" =
+  fileSystems."/home/twistedjoe/archives" =
     { device = "/dev/disk/by-label/archives";
       fsType = "ext4";
     };
