@@ -100,7 +100,6 @@
   users.users = {
     twistedjoe = {
       isNormalUser = true;
-      initialHashedPassword = "$6$QjxCd5kAm8z$CyYbfGP17FbT07y1p4Zkc3.gUekmryxyB..H7kYzE1o4ttrcXzLcQqbXycHv7Ftuh1Ok4qJxQxFu2paI4CEZv0";
       shell = "/run/current-system/sw/bin/fish";
       extraGroups = [ "wheel" "storage" "networkmanager" "systemd-journal" "libvirtd" "vboxusers" "scanner" "lp" "adbusers"];
       openssh.authorizedKeys.keys = [
