@@ -13,6 +13,11 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
   boot.supportedFilesystems = [ "ntfs" ];
 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gnome3";
+  };
+
   environment.systemPackages = with pkgs; [
     discord
     gparted
