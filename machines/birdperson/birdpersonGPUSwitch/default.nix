@@ -18,12 +18,12 @@ in {
   options.birdpersonGPUSwitch = with lib; {
     enable = mkEnableOption "Birdperson GPU switch";
     gpu = mkOption {
-      type = types.enum ["noACS" "nvidia" "amd" "intel"];
+      type = types.enum ["nvidia" "amd" "intel"];
       default = "nvidia";
     };
   };
 
-  config = with lib; (mkMerge [
+  config = with lib; mkIf cfg.enable (mkMerge [
     {
       boot.kernelModules = [ "vfio_iommu_type1"];
       boot.kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" ];
