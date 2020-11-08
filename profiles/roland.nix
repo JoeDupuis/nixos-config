@@ -6,6 +6,7 @@
     ../modules/zerotier.nix
   ];
 
+  time.timeZone = "America/Montreal";
 
   boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
   boot.supportedFilesystems = [ "ntfs" ];

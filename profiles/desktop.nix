@@ -95,10 +95,13 @@
     transmission-gtk
     gvfs
     gnupg
+    zoom-us
+    keybase-gui
+    slack
   ];
 
-
-
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
 
 
 
