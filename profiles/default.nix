@@ -14,12 +14,11 @@
   };
 
 
-
   services.fail2ban.enable = true;
 
 
   # Set your time zone.
-  time.timeZone = "America/Montreal";
+  time.timeZone = "America/Vancouver";
 
   nixpkgs.config.allowUnfree = true;
 
