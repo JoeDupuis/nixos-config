@@ -96,10 +96,11 @@
     gvfs
     gnupg
     zoom-us
+    keybase-gui
   ];
 
-
-
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
 
 
 
