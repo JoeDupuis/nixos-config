@@ -95,6 +95,7 @@
     transmission-gtk
     gvfs
     gnupg
+    zoom-us
   ];
 
 
