@@ -97,6 +97,7 @@
     gnupg
     zoom-us
     keybase-gui
+    slack
   ];
 
   services.keybase.enable = true;
