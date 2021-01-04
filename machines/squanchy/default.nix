@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../profiles/laptop.nix
+    ../../modules/bluetooth.nix
   ];
 
   networking.hostName = "squanchy";
