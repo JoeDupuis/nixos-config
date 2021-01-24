@@ -55,7 +55,6 @@
     maim
     ffmpeg-full
     slop
-    ufraw
     imagemagick7
     hdparm
     darktable

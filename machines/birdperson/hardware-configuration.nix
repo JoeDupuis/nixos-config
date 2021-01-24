@@ -20,23 +20,23 @@
   services.xserver.videoDrivers = ["nvidia"];
   #boot.blacklistedKernelModules = ["amdgpu" "nouveau"];
 
-  nesting.clone = [
-    {
+  specialisation = {
+    Intel.configuration = {
       boot.loader.grub.configurationName = lib.mkForce "Intel";
       birdpersonGPUSwitch = {
         enable = true;
         gpu = lib.mkForce "intel";
       };
-    }
+    };
 
-    {
+    Nvidia.configuration = {
       boot.loader.grub.configurationName = lib.mkForce "nvidia";
       birdpersonGPUSwitch = {
         enable = true;
         gpu = lib.mkForce "nvidia";
       };
-    }
-  ];
+    };
+  };
 
 
   nix.maxJobs = lib.mkDefault 8;
