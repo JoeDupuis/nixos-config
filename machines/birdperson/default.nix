@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../profiles/desktop.nix
+    ../../modules/bluetooth.nix
   ];
 
   networking.hostName = "birdperson";
