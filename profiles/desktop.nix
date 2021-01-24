@@ -20,6 +20,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    ledger
     discord
     gparted
     tigervnc
