@@ -19,9 +19,13 @@
     pinentryFlavor = "gnome3";
   };
 
+  programs.steam.enable = true;
+
+
   environment.systemPackages = with pkgs; [
     ledger
     discord
+    mumble
     gparted
     tigervnc
     pciutils
