@@ -3,10 +3,12 @@
   imports = [
     ./default.nix
     ../modules/avahi.nix
+    ../modules/scan.nix
     ../modules/zerotier.nix
     ../modules/direnv.nix
     #../modules/teamviewer.nix
     ./hosts.nix
+    <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
   ];
 
   services.fstrim.enable = true;
@@ -87,7 +89,6 @@
     ghostscript
     lxappearance
     thunderbolt
-    xsane
     simple-scan
     lz4
     hfsprogs
@@ -125,11 +126,6 @@
 
   services.clipmenu.enable = true;
   programs.fish.enable = true;
-
-  hardware.sane = {
-    enable = true;
-    snapshot = true;
-  };
 
 
   # Enable CUPS to print documents.
