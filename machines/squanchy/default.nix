@@ -9,7 +9,12 @@
 
   networking.hostName = "squanchy";
 
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    device = "nodev";
+    efiSupport = true;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
 
