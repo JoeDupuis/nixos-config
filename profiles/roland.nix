@@ -8,7 +8,7 @@
 
   time.timeZone = "America/Montreal";
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
+  boot.extraModulePackages = [];
   boot.supportedFilesystems = [ "ntfs" ];
 
   environment.systemPackages = with pkgs; [

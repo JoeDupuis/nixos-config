@@ -13,7 +13,7 @@
 
   services.fstrim.enable = true;
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
+  boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
 
   programs.gnupg.agent = {
