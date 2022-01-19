@@ -14,8 +14,10 @@
     version = 2;
     device = "nodev";
     efiSupport = true;
+    #useOSProber = true;
+    efiInstallAsRemovable = true;
   };
-  boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
 
   services.synergy.server = {
     enable = true;
