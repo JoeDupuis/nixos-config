@@ -17,13 +17,12 @@
   boot.extraModulePackages = [ ];
 
 
-  boot.initrd.luks.devices = [
-    {
-      name = "LUKS-SQUANCHY-ROOT";
+  boot.initrd.luks.devices = {
+    LUKS-SQUANCHY-ROOT = {
       device = "/dev/disk/by-partlabel/SQUANCHY-ROOT";
       allowDiscards = true;
-    }
-  ];
+    };
+  };
 
 
 
