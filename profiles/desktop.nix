@@ -6,7 +6,7 @@
     ../modules/scan.nix
     ../modules/zerotier.nix
     ../modules/direnv.nix
-    #../modules/teamviewer.nix
+    ../modules/teamviewer.nix
     ./hosts.nix
     <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
   ];
