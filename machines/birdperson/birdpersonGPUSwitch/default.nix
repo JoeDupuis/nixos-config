@@ -44,20 +44,22 @@ in {
     })
 
     (mkIf (cfg.enable && cfg.gpu == "nvidia") {
-      boot.extraModprobeConfig = usb + (if cfg.acsOverride then amd else toString null);
+      boot.extraModprobeConfig = usb + (if cfg.acsOverride then toString null else amd);
       services.xserver.videoDrivers = mkForce ["nvidia"];
       boot.blacklistedKernelModules = ["amdgpu" "nouveau"];
 
     })
 
     (mkIf (cfg.enable && cfg.gpu == "intel") {
-      boot.extraModprobeConfig = usb + amd + nvidia;
+      #boot.extraModprobeConfig = usb + amd + nvidia;
+      boot.extraModprobeConfig = "8086:1905,1002:aaf0,1002:67df,8086:1901,10de:13c2,10de:0fbb";
+
       services.xserver.videoDrivers = mkForce ["modesetting"];
       boot.blacklistedKernelModules = [ "amdgpu" "nouveau" "nvidia"];
     })
 
     (mkIf (cfg.enable && cfg.gpu == "amd") {
-      boot.extraModprobeConfig = usb + (if cfg.acsOverride then nvidia else toString null);
+      boot.extraModprobeConfig = usb + (if cfg.acsOverride then toString null else nvidia);
       services.xserver.videoDrivers = mkForce ["amdgpu"];
       boot.blacklistedKernelModules = ["nouveau" "nvidia"];
     })
