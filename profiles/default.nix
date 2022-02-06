@@ -34,6 +34,7 @@
     git
     stow
     ncdu
+    nix-top
   ];
 
   # Enable the OpenSSH daemon.
