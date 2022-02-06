@@ -23,6 +23,10 @@
 
   programs.steam.enable = true;
 
+  environment.variables = {
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    TERMINAL = "urxvt";
+  };
 
   environment.systemPackages = with pkgs; [
     insomnia
