@@ -201,7 +201,7 @@
 
   virtualisation = {
     libvirtd.enable = true;
-    libvirtd.qemuOvmf = true;
+    libvirtd.qemu.ovmf.enable = true;
     libvirtd.onBoot = "ignore";
     # virtualbox.host.enable = true;
     # virtualbox.host.enableExtensionPack = true;
