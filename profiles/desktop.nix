@@ -22,6 +22,7 @@
     telnet
     ntfs3g
     chromium
+    google-chrome
     firefox
     nix-index
     irssi
@@ -40,7 +41,7 @@
     pavucontrol
     feh
     maim
-    ffmpeg_4
+    ffmpeg-full
     slop
     ufraw
     imagemagick7
@@ -80,6 +81,10 @@
     scripts.shellfish
     scripts.spotify
     scripts.load-ssh-key
+    vlc
+    transmission-gtk
+    gvfs
+    gnupg
   ];
 
 
@@ -91,7 +96,9 @@
     "167.99.27.107" = ["stage.myvibe.life" "master.myvibe.life"];
     "157.230.74.252" = ["prod.myvibe.life"];
     "104.27.157.125" = ["production.myvibe.life"];
-    "192.168.122.57" = ["transportmmd.ca" "www.transportmmd.ca"];
+    "172.16.100.250" = ["ergo.test"];
+    "192.168.122.42" = ["jira.xrailtest.com" "test.xrailtest.com"];
+    #"192.168.122.57" = ["transportmmd.ca" "www.transportmmd.ca"];
   };
 
 
@@ -192,6 +199,7 @@
   virtualisation = {
     libvirtd.enable = true;
     libvirtd.qemuOvmf = true;
+    libvirtd.onBoot = "ignore";
     # virtualbox.host.enable = true;
     # virtualbox.host.enableExtensionPack = true;
   };
