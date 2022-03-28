@@ -16,7 +16,6 @@
     x11vnc
     polkit_gnome
     xorg.xmodmap
-    ntfs3g
     chromium
     firefox
     rxvt_unicode
