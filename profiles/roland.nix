@@ -6,7 +6,7 @@
     ../modules/zerotier.nix
   ];
 
-  time.timeZone = "America/Montreal";
+  time.timeZone = pkgs.lib.mkForce "America/Montreal";
 
   boot.extraModulePackages = [];
   boot.supportedFilesystems = [ "ntfs" ];
