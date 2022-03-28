@@ -1,4 +1,4 @@
-{ stdenv
+{ stdenv, lib
 , avahi, libjpeg, libusb1, libv4l, net_snmp, libpng
 , gettext, pkgconfig
 
@@ -20,8 +20,8 @@ stdenv.mkDerivation {
   outputs = [ "out" "doc" "man" ];
 
   configureFlags = []
-    ++ stdenv.lib.optional (avahi != null)   "--enable-avahi"
-    ++ stdenv.lib.optional (libusb1 != null) "--enable-libusb_1_0"
+    ++ lib.optional (avahi != null)   "--enable-avahi"
+    ++ lib.optional (libusb1 != null) "--enable-libusb_1_0"
     ;
 
   buildInputs = [ avahi libusb1 libv4l net_snmp libpng ];

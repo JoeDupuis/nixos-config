@@ -17,26 +17,27 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["amdgpu"];
   #boot.blacklistedKernelModules = ["amdgpu" "nouveau"];
 
-  nesting.clone = [
-    {
+  specialisation = {
+    Intel.configuration = {
       boot.loader.grub.configurationName = lib.mkForce "Intel";
       birdpersonGPUSwitch = {
         enable = true;
         gpu = lib.mkForce "intel";
       };
-    }
+    };
 
-    {
-      boot.loader.grub.configurationName = lib.mkForce "nvidia";
+
+    Amd.configuration = {
+      boot.loader.grub.configurationName = lib.mkForce "amd";
       birdpersonGPUSwitch = {
         enable = true;
-        gpu = lib.mkForce "nvidia";
+        gpu = lib.mkForce "amd";
       };
-    }
-  ];
+    };
+  };
 
 
   nix.maxJobs = lib.mkDefault 8;

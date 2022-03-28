@@ -6,8 +6,9 @@
     ../modules/zerotier.nix
   ];
 
+  time.timeZone = "America/Montreal";
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
+  boot.extraModulePackages = [];
   boot.supportedFilesystems = [ "ntfs" ];
 
   environment.systemPackages = with pkgs; [
@@ -17,7 +18,6 @@
     usbutils
     polkit_gnome
     xorg.xmodmap
-    ntfs3g
     chromium
     firefox
     rxvt_unicode
@@ -39,7 +39,7 @@
   ];
 
 
-
+  services.teamviewer.enable = true;
 
   i18n = {
     #consoleFont = "Lat2-Terminus16";
@@ -104,7 +104,6 @@
   users.users = {
     twistedjoe = {
       isNormalUser = true;
-      initialHashedPassword = "$6$QjxCd5kAm8z$CyYbfGP17FbT07y1p4Zkc3.gUekmryxyB..H7kYzE1o4ttrcXzLcQqbXycHv7Ftuh1Ok4qJxQxFu2paI4CEZv0";
       shell = "/run/current-system/sw/bin/fish";
       extraGroups = [ "wheel" "storage" "networkmanager" "systemd-journal" "libvirtd" "vboxusers" "scanner" "lp" "adbusers"];
       openssh.authorizedKeys.keys = [
@@ -128,11 +127,6 @@
 
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = 	"/run/current-system/sw/bin/xfce4-session";
-
-  virtualisation = {
-    libvirtd.enable = true;
-    libvirtd.qemuOvmf = true;
-  };
 
   # Needed for nixops libvirtd backend
   # https://nixos.org/nixops/manual/#idm140737322394336

@@ -3,15 +3,37 @@
   imports = [
     ./default.nix
     ../modules/avahi.nix
+    ../modules/scan.nix
     ../modules/zerotier.nix
+    ../modules/direnv.nix
+    ../modules/teamviewer.nix
+    ./hosts.nix
+    <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
   ];
 
   services.fstrim.enable = true;
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
+  boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gnome3";
+  };
+
+  programs.steam.enable = true;
+
+  environment.variables = {
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    TERMINAL = "urxvt";
+  };
+
   environment.systemPackages = with pkgs; [
+    dmenu
+    insomnia
+    ledger
+    discord
+    mumble
     gparted
     tigervnc
     pciutils
@@ -30,6 +52,8 @@
     rxvt_unicode
     gksu
     pinentry
+    pinentry_gnome
+    pinentry_emacs
     zip
     unzip
     screenfetch
@@ -43,7 +67,6 @@
     maim
     ffmpeg-full
     slop
-    ufraw
     imagemagick7
     hdparm
     darktable
@@ -72,7 +95,6 @@
     ghostscript
     lxappearance
     thunderbolt
-    xsane
     simple-scan
     lz4
     hfsprogs
@@ -85,21 +107,13 @@
     transmission-gtk
     gvfs
     gnupg
+    zoom-us
+    keybase-gui
+    slack
   ];
 
-
-
-  networking.hosts = {
-    "172.16.4.254" = ["xs"]; #xrail
-    "172.16.4.252" = ["xrailvm"];
-    "10.12.0.46" = ["intranet.groupesl.com"];
-    "167.99.27.107" = ["stage.myvibe.life" "master.myvibe.life"];
-    "157.230.74.252" = ["prod.myvibe.life"];
-    "104.27.157.125" = ["production.myvibe.life"];
-    "172.16.100.250" = ["ergo.test"];
-    "192.168.122.42" = ["jira.xrailtest.com" "test.xrailtest.com"];
-    #"192.168.122.57" = ["transportmmd.ca" "www.transportmmd.ca"];
-  };
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
 
 
 
@@ -118,11 +132,6 @@
 
   services.clipmenu.enable = true;
   programs.fish.enable = true;
-
-  hardware.sane = {
-    enable = true;
-    snapshot = true;
-  };
 
 
   # Enable CUPS to print documents.
@@ -187,7 +196,7 @@
   users.users.twistedjoe = {
     isNormalUser = true;
     shell = "/run/current-system/sw/bin/fish";
-    extraGroups = [ "wheel" "storage" "networkmanager" "systemd-journal" "libvirtd" "vboxusers" "scanner" "lp" "adbusers"];
+    extraGroups = [ "wheel" "storage" "networkmanager" "systemd-journal" "libvirtd" "vboxusers" "scanner" "lp" "adbusers" "docker"];
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgm4SslljVjQqdXEGfSTMi9K+Tai/nS4tPSP8fxwwcZ4efIEe4JtiD54HEoFcyFNe0y5uXExeWUcHwwm6/AkRYasbLa9HPJ/Pu0sqMiuqi6mVZhI00H8jAaunZC4z6HpgtDUJzfkUPcaEuGnDJT1OpqFt5mpgwZ+1WTXPqcWWmLIyVjycl4Iye1aQ1CuSY/adR3TDU4a0bZO5r5kwI63i/dorArgUqx84wvUvJNlD7KVMQtEvBw8ajkeIpC8fVN21/29xU1a60gq8hH8mRz08/N+wKLlC2+DpsZOScvNaXwZnRI4Dmz5Gv05J/L1TYt5jOL6tiBj1jIrFeM5bbVMVX twistedjoe@birdperson"
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCBlEfsUxFsoed9khhPhQZTfoDyePFNHo03QZPS3DnmQ9Y33zPlTds09n3ilXV26Sn/6lRGe+Dz9Eyk2JDKrvQ3+/Gltb+VaD0Hp2bH+4C/DGj4Fnw9mf98gfBfUrqhd/LkSevDBMRNohl2rHti/BbQZihRhMi0R7E+ui0csGbyxaHhsKKOjjpHEQbzlkHYPNcvth4OieOdsZIdWoTGj0ZsdEOMhrHtJn8P3qoGxCJZ0YAHwJUqocHVIqOhzWhFJ/ibPQSVB5fDROb2NJBBtdUX74hmTKsT64MZQ1/vUIqKgxRmey/TdjcUTwjuzXk7jh/mv1mGPCsnuECRclESBNn twistedjoe@squanchy"
@@ -195,13 +204,13 @@
     ];
   };
 
-
   virtualisation = {
     libvirtd.enable = true;
-    libvirtd.qemuOvmf = true;
+    libvirtd.qemu.ovmf.enable = true;
     libvirtd.onBoot = "ignore";
     # virtualbox.host.enable = true;
     # virtualbox.host.enableExtensionPack = true;
+    docker.enable = true;
   };
 
   # Needed for nixops libvirtd backend

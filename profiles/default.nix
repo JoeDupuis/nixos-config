@@ -14,12 +14,11 @@
   };
 
 
-
   services.fail2ban.enable = true;
 
 
   # Set your time zone.
-  time.timeZone = "America/Montreal";
+  time.timeZone = "America/Vancouver";
 
   nixpkgs.config.allowUnfree = true;
 
@@ -35,6 +34,7 @@
     git
     stow
     ncdu
+    nix-top
   ];
 
   # Enable the OpenSSH daemon.
@@ -44,10 +44,7 @@
   nixpkgs.overlays = [
     (import ../overlay/nixops.nix)
     (self: super: {
-      #chromium = super.chromium.override { useVaapi = true; enableWideVine  = true; };
-
       nixos-generators = self.callPackage ../packages/nixos-generators {};
-      #xerox6280 = self.callPackage ../packages/xerox6280 {};
       pdfarranger = self.callPackage ../packages/pdfarranger.nix {};
       sane-backends-git  = self.callPackage ../packages/sane-backends/git.nix (config.sane or {});
     })];
