@@ -41,7 +41,7 @@
     nixos-generators
     polkit_gnome
     xorg.xmodmap
-    telnet
+    inetutils
     ntfs3g
     chromium
     google-chrome
