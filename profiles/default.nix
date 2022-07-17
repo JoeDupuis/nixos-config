@@ -27,7 +27,7 @@
     file
     emacs
     tmux
-    ag
+    silver-searcher
     ranger
     man
     htop
