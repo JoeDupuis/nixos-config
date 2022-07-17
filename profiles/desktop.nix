@@ -73,7 +73,6 @@
     rawtherapee
     virtmanager
     OVMF
-    nixops
     playerctl
     xfce.xfce4-notifyd
     gimp
