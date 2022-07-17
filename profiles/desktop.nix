@@ -50,7 +50,6 @@
     irssi
     quasselClient
     rxvt_unicode
-    gksu
     pinentry
     pinentry_gnome
     pinentry_emacs
