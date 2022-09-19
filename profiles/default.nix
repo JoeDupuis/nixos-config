@@ -47,6 +47,7 @@
       nixos-generators = self.callPackage ../packages/nixos-generators {};
       pdfarranger = self.callPackage ../packages/pdfarranger.nix {};
       sane-backends-git  = self.callPackage ../packages/sane-backends/git.nix (config.sane or {});
+      insomnia = self.callPackage ../packages/insomnia.nix {};
     })];
 
 }
