@@ -82,7 +82,6 @@
     libreoffice
     okular
     pdfarranger
-    #linphone
     sshfs
     filezilla
     unison
