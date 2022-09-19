@@ -124,8 +124,6 @@
   programs.ssh.startAgent = true;
   services.emacs.defaultEditor = true;
   services.emacs.enable = true;
-  systemd.user.services.emacs.wants = ["ssh-agent.service"];
-
 
   services.clipmenu.enable = true;
   programs.fish.enable = true;
@@ -166,7 +164,6 @@
 
 
   programs.dconf.enable = true;
-  services.dbus.packages = with pkgs; [ xfce.dconf gnome2.GConf ];
 
 
   services.xserver.enable = true;
