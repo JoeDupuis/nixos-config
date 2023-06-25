@@ -29,6 +29,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    devenv
     dmenu
     insomnia
     ledger
