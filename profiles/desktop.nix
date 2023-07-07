@@ -29,6 +29,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    gist
+    ngrok
+    nodePackages.localtunnel
     devenv
     dmenu
     insomnia
@@ -108,6 +111,7 @@
     zoom-us
     keybase-gui
     slack
+    vscode
   ];
 
   services.keybase.enable = true;
