@@ -129,6 +129,7 @@
   programs.ssh.startAgent = true;
   services.emacs.defaultEditor = true;
   services.emacs.enable = true;
+  systemd.user.services.emacs.environment.RUBY_DEBUG_NO_RELINE = "true";
 
   services.clipmenu.enable = true;
   programs.fish.enable = true;
