@@ -204,6 +204,8 @@
     ];
   };
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   virtualisation = {
     libvirtd.enable = true;
     libvirtd.qemu.ovmf.enable = true;
