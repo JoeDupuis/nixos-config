@@ -28,6 +28,9 @@
     TERMINAL = "urxvt";
   };
 
+  services.xrdp.enable = true;
+  services.xrdp.openFirewall = true;
+
   environment.systemPackages = with pkgs; [
     devenv
     dmenu
