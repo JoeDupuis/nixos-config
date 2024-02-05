@@ -42,7 +42,6 @@
   services.openssh.settings.PasswordAuthentication = false;
 
   nixpkgs.overlays = [
-    (import ../overlay/nixops.nix)
     (self: super: {
       pop-video = self.callPackage ../packages/pop.nix {};
       devenv = self.callPackage ../packages/devenv.nix {};

@@ -222,8 +222,6 @@
     docker.enable = true;
   };
 
-  # Needed for nixops libvirtd backend
-  # https://nixos.org/nixops/manual/#idm140737322394336
   networking.firewall.checkReversePath = false;
 
 }
