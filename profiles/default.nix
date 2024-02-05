@@ -39,7 +39,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
+  services.openssh.settings.PasswordAuthentication = false;
 
   nixpkgs.overlays = [
     (import ../overlay/nixops.nix)
