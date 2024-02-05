@@ -48,11 +48,12 @@
   };
   #boot.loader.efi.canTouchEfiVariables = true;
 
-  services.synergy.server = {
-    enable = true;
-    autoStart = false;
-    address = "192.168.122.1";
-  };
+  # services.synergy.server = {
+  #   enable = true;
+  #   autoStart = false;
+  #   address = "192.168.122.1";
+  # };
+
   environment.etc."synergy-server.conf".source = ./synergy-server.conf;
 
   #24800 synergy
