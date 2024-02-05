@@ -10,14 +10,20 @@
 
 
 
+  #boot.initrd.kernelModules = [ "dm-snapshot" "v4l2loopback"];
+  #boot.extraModulePackages = with config.boot.kernelPackages; [ broadcom_sta v4l2loopback ];
+
   boot.initrd.availableKernelModules = [ "vfio-pci" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" "vfio" "vfio_pci" "vfio_virqfd" "wl"];
-
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  boot.extraModprobeConfig = "options kvm_intel nested=1";
 
-
+  hardware.opengl.driSupport = true;
   services.xserver.videoDrivers = ["amdgpu"];
+  # hardware.opengl.extraPackages = with pkgs; [
+  #   amdvlk
+  # ];
   #boot.blacklistedKernelModules = ["amdgpu" "nouveau"];
 
   specialisation = {
