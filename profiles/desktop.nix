@@ -59,8 +59,8 @@
     quasselClient
     rxvt_unicode
     pinentry
-    pinentry_gnome
-    pinentry_emacs
+    pinentry-gnome
+    pinentry-emacs
     zip
     unzip
     screenfetch
@@ -78,7 +78,7 @@
     hdparm
     darktable
     rawtherapee
-    virtmanager
+    virt-manager
     OVMF
     playerctl
     xfce.xfce4-notifyd
