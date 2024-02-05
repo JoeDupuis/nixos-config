@@ -11,10 +11,39 @@
 
   boot.loader.grub = {
     enable = true;
-    version = 2;
     device = "nodev";
     efiSupport = true;
-    #useOSProber = true;
+    useOSProber = true;
+    # extraEntries = ''
+    #   menuentry "Windows1" {
+    #     insmod part_gpt
+    #     insmod chain
+    #     insmod ntfs
+    #     insmod fat
+    #     insmod search_fs_uuid
+    #     search --fs-uuid --set=root 7cb2e367-01
+    #     chainloader /EFI/bootmgr.efi
+    #   }
+    #   menuentry "Windows2" {
+    #     insmod part_gpt
+    #     insmod chain
+    #     insmod ntfs
+    #     insmod fat
+    #     insmod search_fs_uuid
+    #     search --fs-uuid --set=root 7cb2e367-01
+    #     chainloader /bootmgr.efi
+    #   }
+    #   menuentry "Windows3" {
+    #     insmod part_gpt
+    #     insmod chain
+    #     insmod ntfs
+    #     insmod fat
+    #     insmod search_fs_uuid
+    #     search --fs-uuid --set=root 1a8da801-8f3a-4a17-a7fd-f253146cd8a1
+    #     chainloader /EFI/bootmgr.efi
+    #   }
+    # '';
+
     efiInstallAsRemovable = true;
   };
   #boot.loader.efi.canTouchEfiVariables = true;
