@@ -44,6 +44,7 @@
   nixpkgs.overlays = [
     (import ../overlay/nixops.nix)
     (self: super: {
+      pop-video = self.callPackage ../packages/pop.nix {};
       nixos-generators = self.callPackage ../packages/nixos-generators {};
       pdfarranger = self.callPackage ../packages/pdfarranger.nix {};
       sane-backends-git  = self.callPackage ../packages/sane-backends/git.nix (config.sane or {});
