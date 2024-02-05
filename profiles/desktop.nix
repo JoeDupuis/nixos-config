@@ -29,6 +29,7 @@
   };
 
   services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startxfce4";
   services.xrdp.openFirewall = true;
 
   environment.systemPackages = with pkgs; [
