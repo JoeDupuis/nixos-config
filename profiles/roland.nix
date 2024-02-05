@@ -79,7 +79,7 @@
 
 
   programs.dconf.enable = true;
-  services.dbus.packages = with pkgs; [ xfce.dconf gnome2.GConf ];
+  #services.dbus.packages = with pkgs; [ xfce.dconf gnome2.GConf ];
 
 
   services.xserver = {
@@ -96,10 +96,13 @@
     #desktopManager.plasma5.enable = true;
     desktopManager.xfce = {
       enable = true;
-      thunarPlugins = [ pkgs.xfce.thunar-archive-plugin
-                        pkgs.xfce.thunar-volman];
     };
   };
+
+  programs.thunar.plugins = [
+    pkgs.xfce.thunar-archive-plugin
+    pkgs.xfce.thunar-volman
+  ];
 
   users.users = {
     twistedjoe = {
