@@ -8,7 +8,6 @@
     ../modules/direnv.nix
     ../modules/teamviewer.nix
     ./hosts.nix
-    <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
   ];
 
   services.fstrim.enable = true;
