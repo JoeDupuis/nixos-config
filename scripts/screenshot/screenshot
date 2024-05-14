@@ -11,14 +11,19 @@ SSH_KEY_FINGERPRINT = [
   'SHA256:65Vi/Af+auZKJ1zpcz0nAub1Hns8vk6kDSio5lY6bHw',
   'SHA256:JOhV8zpcDN0z7V+dB+46FRxT5B3pf5wSyg+723iGuWQ',
 ]
-options = {local_parent: "#{ENV['HOME']}/Pictures/screenshots",
-	   mode: :screenshot
-	  }
+options = {
+  local_parent: "#{ENV['HOME']}/Pictures/screenshots",
+	mode: :screenshot,
+  local: false,
+}
 
 OptionParser.new do |opts|
   opts.on("-v", "--video", "record video") do |w|
     options[:mode] = :video
     options[:local_parent] =  "#{ENV['HOME']}/Videos/screencast/"
+  end
+  opts.on("-l", "--local", "skip uploading") do |w|
+    options[:local] = true
   end
 end.parse!
 
@@ -117,7 +122,8 @@ if options[:mode] == :video then
 else
   screenshot local_filename
 end
-copy_path distant_filename
-rsync options[:local_parent], filename, RSYNC_DESTINATION
-
+unless options[:local]
+  copy_path distant_filename
+  rsync options[:local_parent], filename, RSYNC_DESTINATION
+end
 notify
