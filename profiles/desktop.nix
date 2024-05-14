@@ -114,6 +114,7 @@
     keybase-gui
     slack
     vscode
+    nheko
   ];
 
   services.keybase.enable = true;
