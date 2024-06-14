@@ -113,6 +113,7 @@
     keybase-gui
     slack
     vscode
+    lightworks
     nheko
   ];
 
