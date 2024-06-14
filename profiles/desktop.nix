@@ -57,7 +57,6 @@
     quasselClient
     rxvt_unicode
     pinentry
-    pinentry-gnome
     pinentry-emacs
     zip
     unzip
@@ -84,7 +83,7 @@
     inkscape
     openvpn
     remmina
-    dbeaver
+    dbeaver-bin
     libreoffice
     okular
     pdfarranger
