@@ -44,7 +44,7 @@
   nixpkgs.overlays = [
     (self: super: {
       pop-video = self.callPackage ../packages/pop.nix {};
-      devenv = self.callPackage ../packages/devenv.nix {};
+      #devenv = self.callPackage ../packages/devenv.nix {};
     })];
 
 }
