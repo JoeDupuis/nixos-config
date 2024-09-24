@@ -4,7 +4,7 @@ require 'fileutils'
 require 'securerandom'
 
 RSYNC_URL_HOST="https://joescreenshot.nfshost.com"
-SSH_HOST="twistedjoe_joescreenshot@ssh.phx.nearlyfreespeech.net"
+SSH_HOST="twistedjoe_joescreenshot@ssh.nyc1.nearlyfreespeech.net"
 RSYNC_DESTINATION="#{SSH_HOST}:/home/public"
 
 SSH_KEY_FINGERPRINT = [
