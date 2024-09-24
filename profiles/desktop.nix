@@ -116,6 +116,7 @@
     lightworks
     element-desktop
     nheko
+    keepassxc
   ];
 
   services.keybase.enable = true;
