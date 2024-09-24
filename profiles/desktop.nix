@@ -114,6 +114,7 @@
     slack
     vscode
     lightworks
+    element-desktop
     nheko
   ];
 
