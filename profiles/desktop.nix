@@ -23,7 +23,7 @@
 
   environment.variables = {
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    TERMINAL = "urxvt";
+    TERMINAL = "alacritty";
   };
 
   services.xrdp.enable = true;
@@ -55,6 +55,7 @@
     irssi
     quasselClient
     rxvt_unicode
+    alacritty
     pinentry
     pinentry-emacs
     zip
