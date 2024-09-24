@@ -34,7 +34,6 @@
     gist
     ngrok
     nodePackages.localtunnel
-    devenv
     dmenu
     insomnia
     ledger
