@@ -117,6 +117,7 @@
     element-desktop
     nheko
     keepassxc
+    devenv
   ];
 
   services.keybase.enable = true;
