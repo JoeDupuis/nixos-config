@@ -114,8 +114,6 @@
     slack
     vscode
     lightworks
-    element-desktop
-    nheko
     keepassxc
     devenv
   ];
