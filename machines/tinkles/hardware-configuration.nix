@@ -13,12 +13,16 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-boot.initrd.luks.devices = {
- luks-root = {
-  device = "/dev/disk/by-partlabel/root";
-};
-
-};
+  boot.initrd = {
+    luks.devices = {
+      luks-root = {
+        device = "/dev/disk/by-partlabel/root";
+      };
+    };
+    network.ssh = {
+      authotizedKeys = import ../../profiles/ssh_keys.nix;
+    };
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
