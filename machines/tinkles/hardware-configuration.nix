@@ -20,7 +20,7 @@
       };
     };
     network.ssh = {
-      authotizedKeys = import ../../profiles/ssh_keys.nix;
+      authorizedKeys = import ../../profiles/ssh_keys.nix;
     };
   };
 
