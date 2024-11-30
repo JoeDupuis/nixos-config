@@ -9,6 +9,9 @@
   environment.systemPackages = with pkgs; [
   ];
 
-  virtualisation.incus.enable = true;
+  virtualisation.incus = {
+    enable = true;
+    ui.enable = true;
+  };
   networking.nftables.enable = true;
 }
