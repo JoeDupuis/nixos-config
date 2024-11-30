@@ -19,10 +19,10 @@
     };
     kernelModules = [ ];
     availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "e1000e"];
-    systemd.users.root.shell = "/bin/cryptsetup-askpass";
     network.enable = true;
     network.ssh = {
       enable = true;
+      shell = "/bin/cryptsetup-askpass";
       authorizedKeys = config.users.users.twistedjoe.openssh.authorizedKeys.keys;
       hostKeys = [
         "/etc/secrets/initrd/ssh_host_rsa_key"
