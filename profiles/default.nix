@@ -37,14 +37,10 @@
     nix-top
   ];
 
+  services.fstrim.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = false;
-
-  nixpkgs.overlays = [
-    (self: super: {
-      pop-video = self.callPackage ../packages/pop.nix {};
-      #devenv = self.callPackage ../packages/devenv.nix {};
-    })];
-
+  programs.ssh.startAgent = true;
 }
