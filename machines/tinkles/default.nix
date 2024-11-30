@@ -17,10 +17,26 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  networking.wireless.enable = false;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.interfaces.wlo1.useDHCP = true;
+  networking.wireless = {
+    enable = true;
+    interfaces = ["wlo1"];
+    userControlled.enable = true;
+    networks = import ./wifi.secret;
+  };
+
+  systemd.network = {
+    enable = true;
+    wait-online.enable = false;
+    networks."10-lan" = {
+      matchConfig.Name = "eno2";
+      #linkConfig.RequiredForOnline = "routable";
+      networkConfig = {
+        DHCP = "ipv4";
+        IPv6AcceptRA = true;
+      };
+    };
+  };
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
