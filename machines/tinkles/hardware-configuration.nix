@@ -4,14 +4,12 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix")];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+
+  boot.kernelModules = [ "kvm-intel"  ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [ "ip=dhcp" ];
 
   boot.initrd = {
     luks.devices = {
@@ -19,8 +17,17 @@
         device = "/dev/disk/by-partlabel/root";
       };
     };
+    kernelModules = [ ];
+    availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "e1000e"];
+    systemd.users.root.shell = "/bin/cryptsetup-askpass";
+    network.enable = true;
     network.ssh = {
-      authorizedKeys = import ../../profiles/ssh_keys.nix;
+      enable = true;
+      authorizedKeys = config.users.users.twistedjoe.openssh.authorizedKeys.keys;
+      hostKeys = [
+        "/etc/secrets/initrd/ssh_host_rsa_key"
+        "/etc/secrets/initrd/ssh_host_ed25519_key"
+      ];
     };
   };
 
@@ -35,7 +42,10 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  swapDevices = [ ];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 8 * 1024;
+  }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
