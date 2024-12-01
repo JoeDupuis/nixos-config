@@ -19,15 +19,19 @@
     };
     kernelModules = [ ];
     availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "e1000e"];
-    network.enable = true;
-    network.ssh = {
+    network = {
       enable = true;
-      shell = "/bin/cryptsetup-askpass";
-      authorizedKeys = config.users.users.twistedjoe.openssh.authorizedKeys.keys;
-      hostKeys = [
-        "/etc/secrets/initrd/ssh_host_rsa_key"
-        "/etc/secrets/initrd/ssh_host_ed25519_key"
-      ];
+      postCommands = "/bin/ip -4 a add dev eno2 192.168.1.40/24";
+      flushBeforeStage2 = true;
+      ssh = {
+        enable = true;
+        shell = "/bin/cryptsetup-askpass";
+        authorizedKeys = config.users.users.twistedjoe.openssh.authorizedKeys.keys;
+        hostKeys = [
+          "/etc/secrets/initrd/ssh_host_rsa_key"
+          "/etc/secrets/initrd/ssh_host_ed25519_key"
+        ];
+      };
     };
   };
 

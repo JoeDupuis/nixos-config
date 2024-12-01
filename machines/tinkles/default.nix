@@ -31,8 +31,14 @@
     wait-online.enable = false;
     networks."10-lan" = {
       matchConfig.Name = "eno2";
+      address = [
+        "192.168.1.40/24"
+        "192.168.1.41/24"
+        "192.168.1.42/24"
+      ];
       networkConfig = {
-        DHCP = "yes";
+        Gateway = "192.168.1.1";
+        DNS = "192.168.1.1";
       };
     };
   };
