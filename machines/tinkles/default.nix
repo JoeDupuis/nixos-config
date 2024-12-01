@@ -17,6 +17,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  networking.useDHCP = false;
   networking.interfaces.wlo1.useDHCP = true;
   networking.wireless = {
     enable = true;
@@ -30,10 +31,8 @@
     wait-online.enable = false;
     networks."10-lan" = {
       matchConfig.Name = "eno2";
-      #linkConfig.RequiredForOnline = "routable";
       networkConfig = {
-        DHCP = "ipv4";
-        IPv6AcceptRA = true;
+        DHCP = "yes";
       };
     };
   };
