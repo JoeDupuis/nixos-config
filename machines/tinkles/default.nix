@@ -19,7 +19,6 @@
   boot.loader.timeout = 0;
 
   networking.useDHCP = false;
-  networking.interfaces.wlo1.useDHCP = true;
   networking.wireless = {
     enable = true;
     interfaces = ["wlo1"];
