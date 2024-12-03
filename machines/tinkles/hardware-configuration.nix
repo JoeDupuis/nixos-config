@@ -19,15 +19,19 @@
     };
     kernelModules = [ ];
     availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "e1000e"];
-    network.enable = true;
-    network.ssh = {
+    network = {
       enable = true;
-      shell = "/bin/cryptsetup-askpass";
-      authorizedKeys = config.users.users.twistedjoe.openssh.authorizedKeys.keys;
-      hostKeys = [
-        "/etc/secrets/initrd/ssh_host_rsa_key"
-        "/etc/secrets/initrd/ssh_host_ed25519_key"
-      ];
+      postCommands = "/bin/ip -4 a add dev eno2 192.168.1.40/24";
+      flushBeforeStage2 = true;
+      ssh = {
+        enable = true;
+        shell = "/bin/cryptsetup-askpass";
+        authorizedKeys = config.users.users.twistedjoe.openssh.authorizedKeys.keys;
+        hostKeys = [
+          "/etc/secrets/initrd/ssh_host_rsa_key"
+          "/etc/secrets/initrd/ssh_host_ed25519_key"
+        ];
+      };
     };
   };
 
@@ -46,14 +50,6 @@
     device = "/swapfile";
     size = 8 * 1024;
   }];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = false;
-  #networking.interfaces.eno2.useDHCP = lib.mkDefault true;
-  #networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

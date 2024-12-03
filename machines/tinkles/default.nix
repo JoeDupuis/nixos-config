@@ -16,8 +16,9 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 0;
 
-  networking.interfaces.wlo1.useDHCP = true;
+  networking.useDHCP = false;
   networking.wireless = {
     enable = true;
     interfaces = ["wlo1"];
@@ -30,10 +31,14 @@
     wait-online.enable = false;
     networks."10-lan" = {
       matchConfig.Name = "eno2";
-      #linkConfig.RequiredForOnline = "routable";
+      address = [
+        "192.168.1.40/24"
+        "192.168.1.41/24"
+        "192.168.1.42/24"
+      ];
       networkConfig = {
-        DHCP = "ipv4";
-        IPv6AcceptRA = true;
+        Gateway = "192.168.1.1";
+        DNS = "192.168.1.1";
       };
     };
   };
