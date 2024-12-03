@@ -19,7 +19,6 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.extraModprobeConfig = "options kvm_intel nested=1";
 
-  hardware.opengl.driSupport = true;
   services.xserver.videoDrivers = ["amdgpu"];
   # hardware.opengl.extraPackages = with pkgs; [
   #   amdvlk

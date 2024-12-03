@@ -53,7 +53,7 @@
     nix-index
     irssi
     quasselClient
-    rxvt_unicode
+    rxvt-unicode-unwrapped
     alacritty
     pinentry
     pinentry-emacs
@@ -70,7 +70,7 @@
     maim
     ffmpeg-full
     slop
-    imagemagick7
+    imagemagick
     hdparm
     darktable
     rawtherapee
@@ -146,12 +146,6 @@
   };
 
   programs.adb.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  nixpkgs.config.pulseaudio = true;
-
 
   programs.dconf.enable = true;
 

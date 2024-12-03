@@ -20,7 +20,7 @@
     xorg.xmodmap
     chromium
     firefox
-    rxvt_unicode
+    rxvt-unicode-unwrapped
     zip
     unzip
     screenfetch
@@ -70,12 +70,6 @@
     drivers = with pkgs; [
       brlaser ];
   };
-
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  nixpkgs.config.pulseaudio = true;
 
 
   programs.dconf.enable = true;
