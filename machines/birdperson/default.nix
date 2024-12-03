@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ../../profiles/desktop.nix
     ../../modules/bluetooth.nix
+    ../../modules/incus.nix
   ];
 
   networking.hostName = "birdperson";

@@ -115,6 +115,7 @@
     lightworks
     keepassxc
     devenv
+    incus
   ];
 
   services.keybase.enable = true;
