@@ -10,6 +10,22 @@
 
   networking.hostName = "birdperson";
 
+  systemd.network = {
+    enable = true;
+    wait-online.enable = false;
+    networks."10-lan" = {
+      matchConfig.Name = "enp0s31f6";
+      address = [
+        "192.168.1.30/24"
+      ];
+      networkConfig = {
+        Gateway = "192.168.1.1";
+        DNS = "192.168.1.1";
+      };
+    };
+  };
+
+
   boot.loader.grub = {
     enable = true;
     device = "nodev";
