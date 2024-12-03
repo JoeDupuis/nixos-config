@@ -115,7 +115,9 @@
     lightworks
     keepassxc
     devenv
+    netcat-gnu
     incus
+    dig
   ];
 
   services.keybase.enable = true;
