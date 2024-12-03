@@ -11,4 +11,7 @@
   networking.firewall.trustedInterfaces = [ "incusbr0" ];
 
   networking.nftables.enable = true;
+
+
+  systemd.services.docker.after = ["incus.service"];
 }
