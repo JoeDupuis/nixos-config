@@ -91,15 +91,6 @@ def rsync parent_dir, input, destination
     %x(#{rsync_call.join ' '})
 end
 
-def load_ssh_key
-  key_loaded =   SSH_KEY_FINGERPRINT.any? {|fingerprint | %x(ssh-add -l).include? fingerprint}
-  unless key_loaded
-    %x(lpass login joe.dupuis@xylio.net)
-    %x(load-ssh-key)
-  end
-  key_loaded =   SSH_KEY_FINGERPRINT.any? {|fingerprint| %x(ssh-add -l).include? fingerprint}
-  raise 'SSH key not loaded' unless key_loaded
-end
 def notify
   %x(notify-send 'Screenshot uploaded' -t 3000)
 end
@@ -115,7 +106,6 @@ distant_filename = "#{RSYNC_URL_HOST}/#{filename}"
 FileUtils.mkdir_p(File.dirname(local_filename))
 
 
-load_ssh_key
 if options[:mode] == :video then
   copy_path distant_filename
   screencast local_filename

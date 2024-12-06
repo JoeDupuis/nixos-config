@@ -29,6 +29,11 @@
   services.xrdp.defaultWindowManager = "startxfce4";
   services.xrdp.openFirewall = true;
 
+  programs._1password.enable = true;
+  programs._1password-gui.enable = true;
+  programs._1password-gui.polkitPolicyOwners = ["twistedjoe"];
+
+
   environment.systemPackages = with pkgs; [
     gist
     ngrok
@@ -62,7 +67,6 @@
     screenfetch
     xsel
     xclip
-    lastpass-cli
     fzf
     libnotify
     pavucontrol
@@ -103,7 +107,6 @@
     scripts.screenshot
     scripts.shellfish
     scripts.spotify
-    scripts.load-ssh-key
     vlc
     transmission-gtk
     gvfs
