@@ -2,17 +2,14 @@
 require 'optparse'
 require 'fileutils'
 require 'securerandom'
+require 'shellwords'
+require 'json'
 
-RSYNC_URL_HOST="https://joescreenshot.nfshost.com"
-SSH_HOST="twistedjoe_joescreenshot@ssh.nyc1.nearlyfreespeech.net"
-RSYNC_DESTINATION="#{SSH_HOST}:/home/public"
+URL = "https://filecrypt.dupuis.io"
+TOKEN = ENV["FILECRYPT_TOKEN"]
 
-SSH_KEY_FINGERPRINT = [
-  'SHA256:65Vi/Af+auZKJ1zpcz0nAub1Hns8vk6kDSio5lY6bHw',
-  'SHA256:JOhV8zpcDN0z7V+dB+46FRxT5B3pf5wSyg+723iGuWQ',
-]
 options = {
-  local_parent: "#{ENV['HOME']}/Pictures/screenshots",
+  path: "#{ENV['HOME']}/Pictures/screenshots",
 	mode: :screenshot,
   local: false,
 }
@@ -20,7 +17,7 @@ options = {
 OptionParser.new do |opts|
   opts.on("-v", "--video", "record video") do |w|
     options[:mode] = :video
-    options[:local_parent] =  "#{ENV['HOME']}/Videos/screencast/"
+    options[:path] =  "#{ENV['HOME']}/Videos/screencast/"
   end
   opts.on("-l", "--local", "skip uploading") do |w|
     options[:local] = true
@@ -40,10 +37,8 @@ def screencast filename
   screencastcall << '-pix_fmt yuv420p'
   screencastcall << filename
   puts "#{screencastcall.join ' '}"
-
   %x(#{screencastcall.join ' '})
 end
-
 
 def screenshot filename
   screenshot_call = []
@@ -57,63 +52,36 @@ def screenshot filename
   %x(#{screenshot_call.join ' '})
 end
 
-
 def copy_path url
-  xclip_call = []
-  xclip_call << 'echo'
-  xclip_call << "#{url}"
-  xclip_call << '|'
-  xclip_call << 'xclip'
-  xclip_call << '-sel'
-  xclip_call << 'clip'
-
-  system("#{xclip_call.join ' '}")
+  IO.popen(["xclip", "-sel", "clip"], "w") {|f| f << url }
 end
 
-
-def rsync parent_dir, input, destination
-  rsync_call = []
-  rsync_call << 'ssh'
-  rsync_call << SSH_HOST
-  rsync_call << %('mkdir -p #{File.dirname input}')
-
-  %x(#{rsync_call.join ' '})
-  puts rsync_call.join ' '
-
-  rsync_call = []
-  rsync_call << 'rsync'
-#  rsync_call << '--relative'
-  rsync_call << "#{parent_dir}/#{input}"
-  rsync_call << "#{destination}/#{input}"
-
-
-
-    %x(#{rsync_call.join ' '})
+def upload path
+  output = %x{curl --request "POST"  \
+                   --url "#{URL}/api/v1/uploads.json" \
+                   --header "Authorization: Bearer #{TOKEN}" \
+                   --header "Content-Type: multipart/form-data" \
+                   --form "upload[file]=@#{path}"}
+  JSON.parse(output)["url"]
 end
 
 def notify
-  %x(notify-send 'Screenshot uploaded' -t 3000)
+  system("notify-send", "Screenshot uploaded", "-t", "3000")
 end
 
 extension = 'png'
 extension = 'mp4' if options[:mode] == :video
-imagename = "#{Time.now.strftime('%Y%m%d%H%M%S')}_#{SecureRandom.hex(5)}.#{extension}"
-date_folder = Time.now.strftime('%Y/%m')
-
-filename = "#{date_folder}/#{imagename}"
-local_filename = "#{options[:local_parent]}/#{filename}"
-distant_filename = "#{RSYNC_URL_HOST}/#{filename}"
-FileUtils.mkdir_p(File.dirname(local_filename))
-
+filename = "#{Time.now.strftime('%Y%m%d%H%M%S')}_#{SecureRandom.hex(5)}.#{extension}"
+path = File.join(options[:path], Time.now.strftime('%Y/%m'), filename)
+FileUtils.mkdir_p(File.dirname(path))
 
 if options[:mode] == :video then
-  copy_path distant_filename
-  screencast local_filename
+  screencast path
 else
-  screenshot local_filename
+  screenshot path
 end
 unless options[:local]
-  copy_path distant_filename
-  rsync options[:local_parent], filename, RSYNC_DESTINATION
+  url = upload(path)
+  copy_path(url)
 end
 notify

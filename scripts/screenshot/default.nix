@@ -1,15 +1,18 @@
-{pkgs, stdenv, lib, ...} :
-
-stdenv.mkDerivation {
+{ writeShellApplication
+, ruby
+, ffmpeg-full
+, curl
+, slop
+, maim
+, xclip
+, libnotify
+, ... } :
+writeShellApplication {
   name = "screenshot";
-  src = ./screenshot;
-  dontUnpack = true;
-
-  buildInputs = [ pkgs.ruby pkgs.libnotify ];
-
-  installPhase = ''
-    mkdir -p $out/bin
-    cp $src $out/bin/$name
-    chmod 755 $out/bin/$name
+  runtimeInputs = [ruby ffmpeg-full curl slop maim xclip libnotify];
+  text = ''
+    # shellcheck source=/dev/null
+    set -a && source ~/.config/filecrypt/env && set +a
+    op run --no-masking -- ${./screenshot} "$@"
   '';
 }
