@@ -8,8 +8,8 @@
     ../modules/direnv.nix
     ../modules/teamviewer.nix
     ./users.nix
-    ./hosts.nix
-  ];
+  ]
+   ++ lib.optional (builtins.pathExists ./hosts.nix) ./hosts.nix;
 
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
