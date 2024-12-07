@@ -108,7 +108,7 @@
     scripts.shellfish
     scripts.spotify
     vlc
-    transmission-gtk
+    transmission_4-gtk
     gvfs
     gnupg
     zoom-us
