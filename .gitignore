@@ -2,3 +2,7 @@ configuration.nix
 *.secret
 profiles/hosts.nix
 incus.nix
+
+support/installer/result
+support/incus/result
+support/incus/result-2
