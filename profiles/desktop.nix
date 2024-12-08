@@ -105,7 +105,6 @@
     gvfs
     gnupg
     zoom-us
-    keybase-gui
     slack
     vscode
     lightworks
@@ -115,11 +114,6 @@
     incus
     dig
   ];
-
-  services.keybase.enable = true;
-  services.kbfs.enable = true;
-
-
 
   networking.networkmanager.enable = true;
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
