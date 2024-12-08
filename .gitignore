@@ -1,4 +1,4 @@
-configuration.nix
+/configuration.nix
 *.secret
 profiles/hosts.nix
 incus.nix
