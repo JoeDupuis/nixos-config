@@ -2,11 +2,11 @@
 {
   imports = [
     ./default.nix
+
     ../modules/avahi.nix
     ../modules/scan.nix
     ../modules/direnv.nix
     ../modules/teamviewer.nix
-    ./users.nix
   ]
    ++ lib.optional (builtins.pathExists ./hosts.nix) ./hosts.nix;
 

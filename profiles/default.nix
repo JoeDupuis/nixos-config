@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ../scripts
+    ../scripts # overlay not installed
+    ./users.nix
     ../modules/tailscale.nix
   ];
 
