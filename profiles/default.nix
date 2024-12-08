@@ -11,7 +11,6 @@
     packages = with pkgs; [terminus_font];
     keyMap = "us";
     font = "ter-i32b";
-    #font = "Lat2-Terminus16";
   };
 
 
