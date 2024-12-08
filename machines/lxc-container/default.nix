@@ -2,6 +2,6 @@
 {
   imports = [
     <nixpkgs/nixos/modules/virtualisation/lxc-container.nix>
-    ../profiles/kamal.nix
+    ../../profiles/kamal.nix
   ];
 }
