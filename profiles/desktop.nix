@@ -98,7 +98,6 @@
     hfsprogs
     gitAndTools.gitflow
     scripts.screenshot
-    scripts.shellfish
     scripts.spotify
     vlc
     transmission_4-gtk
@@ -126,7 +125,6 @@
   systemd.user.services.emacs.environment.RUBY_DEBUG_NO_RELINE = "true";
 
   services.clipmenu.enable = true;
-  programs.fish.enable = true;
 
 
   # Enable CUPS to print documents.

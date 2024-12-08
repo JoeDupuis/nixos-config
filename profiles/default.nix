@@ -17,6 +17,7 @@
 
   services.fail2ban.enable = true;
 
+  programs.fish.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Vancouver";
