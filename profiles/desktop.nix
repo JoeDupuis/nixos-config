@@ -4,7 +4,6 @@
     ./default.nix
     ../modules/avahi.nix
     ../modules/scan.nix
-    ../modules/zerotier.nix
     ../modules/direnv.nix
     ../modules/teamviewer.nix
     ./users.nix

@@ -1,9 +1,9 @@
+
 { config, pkgs, ... }:
 {
   imports = [
     ./default.nix
     ../modules/avahi.nix
-    ../modules/zerotier.nix
   ];
 
   time.timeZone = pkgs.lib.mkForce "America/Montreal";
@@ -29,7 +29,7 @@
     fzf
     libnotify
     pavucontrol
-    virtmanager
+    virt-manager
     playerctl
     xfce.xfce4-notifyd
     gimp
@@ -41,9 +41,9 @@
 
   services.teamviewer.enable = true;
 
+  console.keyMap = "us";
   i18n = {
     #consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
     defaultLocale =  pkgs.lib.mkForce "fr_CA.UTF-8";
   };
 
@@ -79,7 +79,7 @@
   services.xserver = {
     enable = true;
     exportConfiguration = true; #needed to list xserver kb layouts
-    layout = "ca";
+    xkb.layout = "ca";
     #xkbVariant = "fr";
     #xkbModel = "pc105";
     displayManager = {
