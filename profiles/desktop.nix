@@ -23,7 +23,6 @@
 
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "startxfce4";
-  services.xrdp.openFirewall = true;
 
   programs._1password.enable = true;
   programs._1password-gui.enable = true;
