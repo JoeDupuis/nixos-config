@@ -30,7 +30,13 @@
     initialHashedPassword = lib.mkForce "";
     hashedPassword = lib.mkForce null;
     isNormalUser = true;
+    extraGroups = [ "wheel" "storage" "networkmanager" "systemd-journal" "libvirtd" "vboxusers" "scanner" "lp" "adbusers" "docker" "incus-admin"];
     shell = "/run/current-system/sw/bin/fish";
+  };
+
+
+  services.tailscale = {
+    enable = true;
   };
 
   services.xserver = {
@@ -70,8 +76,9 @@
       { writeScriptBin }:
       writeShellScriptBin "copy-emacs-config" ''
           rm -rf ~/.emacs.d
+          git config --global --add safe.directory /etc/emacs-config-repo
           git clone /etc/emacs-config-repo ~/.emacs.d
-          chown -R twistedjoe:users ~/.emacs.d
+          chown -R joedupuis:users ~/.emacs.d
         ''
     ) {})
 
@@ -86,7 +93,7 @@
           cd /mnt/etc/nixos
           git remote remove origin
           mv /mnt/etc/nixos-bak /mnt/etc/nixos/machines/new-computer
-          chown -R twistedjoe:users /mn/etc/nixos
+          chown -R joedupuis:users /mn/etc/nixos
         ''
     ) {})
 

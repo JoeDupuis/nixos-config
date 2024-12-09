@@ -222,7 +222,7 @@ module Helpers
     def part(disk, number)
       if disk.match(%r{^/dev/mmcblk}) || disk.match(%r{^/dev/nvme\d+n\d+}) then
         [disk, "p", number].join()
-      elsif disk.match(%r{^/dev/sd[a-z]}) then
+      elsif disk.match(%r{^/dev/sd[a-z]}) || disk.match(%r{^/dev/vd[a-z]}) then
         [disk, number].join()
       else
         raise "Partition numbering scheme for this disk type (for '#{disk}') not implemented."
