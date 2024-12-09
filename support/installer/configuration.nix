@@ -42,7 +42,7 @@
   };
 
   environment.etc = {
-    "my-nixos-config-repo" = {
+    "nixos-config-repo" = {
       source = pkgs.callPackage (
         { runCommand, gitMinimal }:
         runCommand "my-config-repo" { nativeBuildInputs = [ gitMinimal ]; } ''
@@ -53,7 +53,7 @@
       ) {};
     };
 
-    "my-emacs-config-repo" = {
+    "emacs-config-repo" = {
       source = pkgs.callPackage (
         { runCommand, gitMinimal }:
         runCommand "my-config-repo" { nativeBuildInputs = [ gitMinimal ]; } ''
@@ -66,6 +66,45 @@
   };
 
   environment.systemPackages = with pkgs; [
+    (pkgs.callPackage (
+      { writeScriptBin }:
+      writeShellScriptBin "copy-emacs-config" ''
+          rm -rf ~/.emacs.d
+          git clone /etc/emacs-config-repo ~/.emacs.d
+          chown -R twistedjoe:users ~/.emacs.d
+        ''
+    ) {})
+
+    (pkgs.callPackage (
+      { writeScriptBin }:
+      writeShellScriptBin "generate-config" ''
+          hostname=''${1:-new-computer}
+          nixos-generate-config --root /mnt
+          mv /mnt/etc/nixos /mnt/etc/nixos-bak
+          git clone /etc/nixos-config-repo /mnt/etc/nixos
+          echo "import ./machines/$hostname" > /etc/nixos/configuration.nix
+          cd /mnt/etc/nixos
+          git remote remove origin
+          mv /mnt/etc/nixos-bak /mnt/etc/nixos/machines/new-computer
+          chown -R twistedjoe:users /mn/etc/nixos
+        ''
+    ) {})
+
+    (pkgs.callPackage (
+      { writeScriptBin, ruby }:
+      writeScriptBin "generate-machine-config" ''
+          #!${ruby}/bin/ruby
+          ${builtins.readFile ./scripts/generate-machine-config}
+        ''
+    ) {})
+    (pkgs.callPackage (
+      { writeScriptBin, ruby }:
+      writeScriptBin "format-disk" ''
+          #!${ruby}/bin/ruby
+          ${builtins.readFile ./scripts/disk-formatter.rb}
+        ''
+    ) {})
+
     wget
     file
     emacs
