@@ -63,9 +63,7 @@
       source = pkgs.callPackage (
         { runCommand, gitMinimal }:
         runCommand "my-config-repo" { nativeBuildInputs = [ gitMinimal ]; } ''
-           HOME=.
-           git config --global --add safe.directory '*'
-           git clone --bare ${/home/twistedjoe/.emacs.d/.git} $out
+           cp -r ${/home/twistedjoe/.emacs.d} $out
           ''
       ) {};
     };
@@ -76,8 +74,7 @@
       { writeScriptBin }:
       writeShellScriptBin "copy-emacs-config" ''
           rm -rf ~/.emacs.d
-          git config --global --add safe.directory /etc/emacs-config-repo
-          git clone /etc/emacs-config-repo ~/.emacs.d
+          cp -r /etc/emacs-config-repo ~/.emacs.d
           chown -R joedupuis:users ~/.emacs.d
         ''
     ) {})
