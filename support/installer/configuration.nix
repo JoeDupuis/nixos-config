@@ -86,12 +86,11 @@
           nixos-generate-config --root /mnt
           mv /mnt/etc/nixos /mnt/etc/nixos-bak
           git clone /etc/nixos-config-repo /mnt/etc/nixos
-          echo "import ./machines/$hostname" > /etc/nixos/configuration.nix
+          echo "import ./machines/$hostname" > /mnt/etc/nixos/configuration.nix
           cd /mnt/etc/nixos
           git remote remove origin
-          mv /mnt/etc/nixos-bak /mnt/etc/nixos/machines/new-computer
+          mv /mnt/etc/nixos-bak /mnt/etc/nixos/machines/$hostname
           chown -R joedupuis:users /mnt/etc/nixos
-          nix-channel --update
         ''
     ) {})
 
