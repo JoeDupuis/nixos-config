@@ -49,15 +49,9 @@ contents = <<~EOF
   ];
   networking.hostName = #{hostname.to_json};
 
-  samueldr = {
-    boot.type = "efi";
-    # TODO: use your system
-    # hardware.system = "Friendly System Name";
-    hardware.storage.size = #{storage_size.to_json} * 1024;
-
-    # TODO: get this defined in your system (crutch for generic system)
-    use-case.system-type.desktop.enable = true;
-  };
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems = {
     "/" = {

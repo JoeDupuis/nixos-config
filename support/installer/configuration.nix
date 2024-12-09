@@ -93,7 +93,8 @@
           cd /mnt/etc/nixos
           git remote remove origin
           mv /mnt/etc/nixos-bak /mnt/etc/nixos/machines/new-computer
-          chown -R joedupuis:users /mn/etc/nixos
+          chown -R joedupuis:users /mnt/etc/nixos
+          nix-channel --update
         ''
     ) {})
 
