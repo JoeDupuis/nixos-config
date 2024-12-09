@@ -285,7 +285,7 @@ puts "Working on '#{disk_param}' → '#{disk}'"
 #
 
 # Partition count, to track the location of the last one, the rootfs.
-partition_count = 5
+partition_count = 2
 
 if do_partitioning then
   puts ""
