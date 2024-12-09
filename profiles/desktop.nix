@@ -2,8 +2,6 @@
 {
   imports = [
     ./default.nix
-
-    ../modules/avahi.nix
     ../modules/scan.nix
     ../modules/direnv.nix
     ../modules/teamviewer.nix

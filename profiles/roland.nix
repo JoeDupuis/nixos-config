@@ -3,7 +3,6 @@
 {
   imports = [
     ./default.nix
-    ../modules/avahi.nix
   ];
 
   time.timeZone = pkgs.lib.mkForce "America/Montreal";
