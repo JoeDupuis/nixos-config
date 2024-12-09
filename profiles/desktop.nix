@@ -2,6 +2,7 @@
 {
   imports = [
     ./default.nix
+    ../modules/yubikey.nix
     ../modules/scan.nix
     ../modules/direnv.nix
     ../modules/teamviewer.nix
