@@ -13,3 +13,7 @@ generate-config
 # DONT FORGET TO ADD A PROFILE!
 
 sudo nixos-install
+
+SET USER PASSWORD
+
+STILL MISSING THE EMACS AND DOTFILES
