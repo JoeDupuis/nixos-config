@@ -12,8 +12,12 @@
     repositoryFile = "/etc/restic/repo";
     paths = ["/var/lib/docker/volumes"];
     passwordFile = "/etc/restic/password";
-      timerConfig = {
-        OnCalendar = "*:0/15";
-      };
+    pruneOpts = [
+      "--keep-last 100",
+      "--keep-daily 90"
+    ];
+    timerConfig = {
+      OnCalendar = "*:0/15";
+    };
   };
 }
