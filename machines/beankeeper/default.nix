@@ -8,6 +8,7 @@
 
   services.restic.backups.beankeeper = {
     environmentFile = "/etc/restic/env";
+    repositoryFile = "/etc/restic/repo";
       timerConfig = {
         OnCalendar = "*:0/15";
       };
