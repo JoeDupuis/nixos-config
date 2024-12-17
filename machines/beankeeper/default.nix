@@ -13,7 +13,7 @@
     paths = ["/var/lib/docker/volumes"];
     passwordFile = "/etc/restic/password";
     pruneOpts = [
-      "--keep-last 100",
+      "--keep-last 100"
       "--keep-daily 90"
     ];
     timerConfig = {
