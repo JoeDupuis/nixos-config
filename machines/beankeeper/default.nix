@@ -7,6 +7,7 @@
   ];
 
   services.restic.backups.beankeeper = {
+    initialize = true;
     environmentFile = "/etc/restic/env";
     repositoryFile = "/etc/restic/repo";
     passwordFile = "/etc/restic/password";
