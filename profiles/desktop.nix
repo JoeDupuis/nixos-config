@@ -111,6 +111,9 @@
     netcat-gnu
     incus
     dig
+    jq
+    awscli2
+    age
   ];
 
   networking.networkmanager.enable = true;
