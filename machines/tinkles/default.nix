@@ -20,7 +20,7 @@
 
   networking.useDHCP = false;
   networking.wireless = {
-    enable = true;
+    enable = false;
     interfaces = ["wlo1"];
     userControlled.enable = true;
     networks = import ./wifi.secret;
