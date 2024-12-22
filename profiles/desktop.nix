@@ -32,6 +32,7 @@
     nodePackages.localtunnel
     dmenu
     insomnia
+    postman
     ledger
     discord
     mumble
