@@ -46,9 +46,7 @@
     _1password-cli
   ];
 
-  homebrew.enable = true;
   services.tailscale.enable = true;
-  services.emacs.enable = true;
   programs.fish.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
