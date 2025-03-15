@@ -29,12 +29,21 @@
       in import "${module}/module.nix" { lix = lixSrc; }
       )
     ];
+
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
+    git
 	  stow
 	  irssi
     fzf
     htop
     emacs
+    devenv
+    direnv
+    tmux
+    silver-searcher
+    _1password-cli
   ];
 
   homebrew.enable = true;
