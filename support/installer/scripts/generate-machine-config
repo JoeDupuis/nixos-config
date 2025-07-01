@@ -1,0 +1,107 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -p ruby -i ruby
+
+# Thanks Sam!
+# https://gitlab.com/samueldr/nixos-configuration
+
+
+require "shellwords"
+require "fileutils"
+require "json"
+require "securerandom"
+
+def megabytes(num)
+  num * 1024 * 1024
+end
+
+def volid_to_linux_format(id)
+  id.match(/(.{4})(.{4})/)
+  [$1, $2].join("-").upcase
+end
+
+if ARGV.length != 2 then
+$stderr.puts <<EOF
+Usage: #{$0} <hostname> <storage-size-in-gb>
+EOF
+  exit 1
+end
+
+hostname = ARGV.shift
+storage_size = ARGV.shift.to_i
+nixos_version = `nixos-version`.chomp[0..4]
+
+rootfs_uuid = SecureRandom.uuid
+luks_uuid = SecureRandom.uuid
+# VOLUME-ID is a 32-bit hexadecimal number
+esp_volid = SecureRandom.hex(32 / 8)
+
+FileUtils.mkdir_p("machines/#{hostname}")
+contents = <<~EOF
+{
+  imports = [
+    # TODO: add your system
+    # This is used as a crutch to allow evaluation during install to succeed.
+    ../../support/shared/generic-system.nix
+    # Make sure drivers for the root storage module and other important modules are
+    # loaded when you add yuour system type too!
+    # (nvme, sdhci, etc)
+    <nixpkgs/nixos/modules/profiles/all-hardware.nix>
+  ];
+  networking.hostName = #{hostname.to_json};
+
+  # Use the systemd-boot EFI boot loader.
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+
+  fileSystems = {
+    "/" = {
+      device = #{"/dev/disk/by-uuid/#{rootfs_uuid}".to_json};
+      fsType = "ext4";
+    };
+
+    "/boot" = {
+      device = #{"/dev/disk/by-uuid/#{volid_to_linux_format(esp_volid)}".to_json};
+      fsType = "vfat";
+    };
+  };
+
+  boot.initrd.luks.devices = {
+    #{"LUKS-#{hostname}-ROOTFS".upcase.to_json} = {
+      device = #{"/dev/disk/by-uuid/#{luks_uuid}".to_json};
+      allowDiscards = true;
+    };
+  };
+
+  # TODO: decide on swap size and usage
+  # swapDevices = [
+  #   { device = "/swapfile"; size = 8 * 1024; }
+  # ];
+
+  system.stateVersion = #{nixos_version.to_json};
+}
+EOF
+File.write("machines/#{hostname}/default.nix", contents)
+
+config = {
+  "fde": {
+    "enable": true,
+    "passphrase": nil, # XXX get from user in disk-formatter
+  },
+  filesystems: {
+    "boot": {
+      "label": "#{hostname[0..6]}-ESP".upcase,
+      "uuid": esp_volid,
+      "size": if storage_size <= 32 then megabytes(512) else megabytes(1024) end,
+    },
+    "luks": {
+      "uuid": luks_uuid,
+    },
+    "rootfs": {
+      "label": "#{hostname}-ROOTFS".upcase,
+      "uuid": rootfs_uuid,
+    },
+  },
+}
+File.write("machines/#{hostname}/installer-config.json", config.to_json)
+
+# vim: ft=ruby

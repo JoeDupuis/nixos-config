@@ -2,8 +2,7 @@
 {
   imports = [
     ./default.nix
-
-    ../modules/avahi.nix
+    ../modules/yubikey.nix
     ../modules/scan.nix
     ../modules/direnv.nix
     ../modules/teamviewer.nix
@@ -33,6 +32,7 @@
     nodePackages.localtunnel
     dmenu
     insomnia
+    postman
     ledger
     discord
     mumble
@@ -112,6 +112,9 @@
     netcat-gnu
     incus
     dig
+    jq
+    awscli2
+    age
   ];
 
   networking.networkmanager.enable = true;

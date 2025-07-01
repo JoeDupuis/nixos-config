@@ -21,7 +21,7 @@
     availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "e1000e"];
     network = {
       enable = true;
-      postCommands = "/bin/ip -4 a add dev eno2 192.168.1.40/24";
+      postCommands = "/bin/ip -4 a add dev eno2 192.168.8.40/24";
       flushBeforeStage2 = true;
       ssh = {
         enable = true;

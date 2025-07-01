@@ -6,5 +6,5 @@
   ++ lib.optional (builtins.pathExists ../incus.nix) ../incus.nix;
 
   virtualisation.docker.enable = true;
-  virtualisation.docker.logDriver = "json-file";
+  virtualisation.docker.logDriver = "journald";
 }
