@@ -8,6 +8,7 @@
 
  networking.firewall.allowedTCPPorts = [ 80 443 ];
   networking.firewall.interfaces."br-6759ce72fa49".allowedTCPPorts = [ 2375 ];
+  networking.firewall.interfaces."docker0".allowedTCPPorts = [ 2375 ];
 
   virtualisation.docker.daemon.settings = {
     hosts = [
