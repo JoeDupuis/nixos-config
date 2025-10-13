@@ -8,5 +8,5 @@
 
   networking.hostName = "n8n";
 
-  services.n8n.enable = true
+  services.n8n.enable = true;
 }
