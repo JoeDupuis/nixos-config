@@ -40,6 +40,28 @@
           };
           General.Locale = "en";
         };
+
+        BitTorrent = {
+          # Queueing settings
+          "Session\\QueueingSystemEnabled" = true;
+          "Session\\MaxActiveDownloads" = 10;
+          "Session\\MaxActiveUploads" = 10;
+          "Session\\MaxActiveTorrents" = 50;
+
+          # Ignore slow/inactive torrents for queue
+          "Session\\IgnoreSlowTorrentsForQueueing" = true;
+          "Session\\SlowTorrentsDownloadRate" = 2;      # KiB/s
+          "Session\\SlowTorrentsUploadRate" = 2;        # KiB/s
+          "Session\\SlowTorrentsInactivityTimer" = 60;  # seconds
+
+          # Seeding limits (any condition triggers removal)
+          "Session\\GlobalMaxRatio" = 1.5;
+          "Session\\GlobalMaxSeedingMinutes" = 10080;             # 1 week = 7*24*60
+          "Session\\GlobalMaxInactiveSeedingMinutes" = 10080;     # 1 week
+
+          # Action: Stop, Remove, RemoveWithContent, EnableSuperSeeding
+          "Session\\ShareLimitAction" = "RemoveWithContent";
+        };
       };
     };
 
@@ -159,6 +181,23 @@
         IPv6AcceptRA = true;
       };
       #linkConfig.RequiredForOnline = "routable";
+    };
+  };
+
+  systemd.services.plex-weekly-restart = {
+    description = "Weekly restart of Plex to keep the EAE audio transcoder healthy";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl try-restart plex.service";
+    };
+  };
+
+  systemd.timers.plex-weekly-restart = {
+    description = "Weekly Plex restart";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "Mon *-*-* 05:00:00";
+      Persistent = true;
     };
   };
 }
