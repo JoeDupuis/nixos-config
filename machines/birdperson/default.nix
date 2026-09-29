@@ -16,6 +16,8 @@
 
   jovian.hardware.has.amd.gpu = true;
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.networkmanager.enable = true;
 
   # systemd.network = {
