@@ -21,6 +21,9 @@
   hardware.wirelessRegulatoryDatabase = true;
   boot.extraModprobeConfig = "options cfg80211 ieee80211_regdom=CA";
 
+  programs.steam.remotePlay.openFirewall = true;
+  networking.firewall.trustedInterfaces = [ "wlp0s20f0u2" ];
+
   networking.networkmanager.enable = true;
 
   # systemd.network = {
