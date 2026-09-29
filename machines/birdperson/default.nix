@@ -16,7 +16,10 @@
 
   jovian.hardware.has.amd.gpu = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_testing;
+
+  hardware.wirelessRegulatoryDatabase = true;
+  boot.extraModprobeConfig = "options cfg80211 ieee80211_regdom=CA";
 
   networking.networkmanager.enable = true;
 
