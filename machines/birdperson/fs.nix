@@ -17,6 +17,11 @@
       allowDiscards = true;
     };
 
+    LUKS-BIRDPERSON-STORAGE = {
+      device = "/dev/disk/by-uuid/9488ce4f-c1a2-4446-8d7c-4ae242fc86a3";
+      allowDiscards = true;
+    };
+
   };
 
 
@@ -30,7 +35,10 @@
     { device = "/dev/disk/by-label/archives";
       fsType = "ext4";
     };
-
+  fileSystems."/mnt/storage" =
+    { device = "/dev/disk/by-label/storage";
+      fsType = "ext4";
+    };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-partlabel/EFI-BIRDPERSON";

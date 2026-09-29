@@ -13,6 +13,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   programs.steam.enable = true;
+  hardware.steam-hardware.enable = true;
 
   environment.variables = {
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
@@ -20,17 +21,20 @@
   };
 
   services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "startxfce4";
+  #services.xrdp.defaultWindowManager = "startxfce4";
+  services.xrdp.defaultWindowManager = "/run/current-system/sw/bin/xfce4-session";
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [3389 3000]; #xrdp
 
   programs._1password.enable = true;
   programs._1password-gui.enable = true;
   programs._1password-gui.polkitPolicyOwners = ["twistedjoe"];
 
   environment.systemPackages = with pkgs; [
+    # claude-code  # using FHS module with auto-updates instead (modules/claude-code.nix)
+    nodejs
     gist
     ngrok
     nodePackages.localtunnel
-    dmenu
     insomnia
     postman
     ledger
@@ -53,7 +57,7 @@
     quasselClient
     rxvt-unicode-unwrapped
     alacritty
-    pinentry
+    pinentry-curses
     pinentry-emacs
     zip
     unzip
@@ -72,16 +76,13 @@
     darktable
     rawtherapee
     virt-manager
-    OVMF
     playerctl
-    xfce.xfce4-notifyd
     gimp
     inkscape
     openvpn
     remmina
     dbeaver-bin
     libreoffice
-    okular
     pdfarranger
     sshfs
     filezilla
@@ -96,9 +97,8 @@
     simple-scan
     lz4
     hfsprogs
-    gitAndTools.gitflow
-    scripts.screenshot
-    scripts.spotify
+    screenshot-script
+    spotify-script
     vlc
     transmission_4-gtk
     gvfs
@@ -117,7 +117,7 @@
     age
   ];
 
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
@@ -136,41 +136,15 @@
     drivers = with pkgs; [brlaser];
   };
 
-  programs.adb.enable = true;
-
   programs.dconf.enable = true;
 
-
-  services.xserver.enable = true;
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.windowManager.i3.extraPackages = with pkgs; [
-    rofi #application launcher most people use
-    i3status # gives you the default i3 status bar
-    i3lock #default i3 screen locker
-    i3blocks #if you are planning on using i3blocks over i3status
-  ];
-
-  services.xserver.displayManager.lightdm.enable = true;
-
-  services.xserver = {
-    desktopManager.xfce = {
-      enable = true;
-      enableXfwm = false;
-      noDesktop = true;
-    };
-  };
-
-  programs.thunar.plugins = [
-    pkgs.xfce.thunar-archive-plugin
-    pkgs.xfce.thunar-volman
-  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   virtualisation = {
-    libvirtd.enable = true;
-    libvirtd.qemu.ovmf.enable = true;
-    libvirtd.onBoot = "ignore";
+    # libvirtd.enable = true;
+    # libvirtd.qemu.ovmf.enable = true;
+    # libvirtd.onBoot = "ignore";
     # virtualbox.host.enable = true;
     # virtualbox.host.enableExtensionPack = true;
     docker.enable = true;

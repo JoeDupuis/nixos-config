@@ -1,8 +1,6 @@
-{ config, pkgs, ... }: rec {
+{ config, pkgs, ... }: {
   nixpkgs.overlays = [ (self: super: {
-    scripts = {
-      screenshot = pkgs.callPackage ./screenshot {};
-      spotify = pkgs.callPackage ./spotify {};
-    };
+    screenshot-script = self.callPackage ./screenshot {};
+    spotify-script = self.callPackage ./spotify {};
   })];
 }

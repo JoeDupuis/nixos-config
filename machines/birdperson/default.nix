@@ -6,24 +6,30 @@
     ../../profiles/desktop.nix
     ../../modules/bluetooth.nix
     ../../modules/incus.nix
+    ../../modules/i3-xfce.nix
+    ../../modules/claude-code.nix
+    # ../../modules/plasma.nix
+    # ../../modules/jovian.nix
   ];
 
   networking.hostName = "birdperson";
 
-  systemd.network = {
-    enable = true;
-    wait-online.enable = false;
-    networks."10-lan" = {
-      matchConfig.Name = "enp0s31f6";
-      address = [
-        "192.168.8.30/24"
-      ];
-      networkConfig = {
-        Gateway = "192.168.8.1";
-        DNS = "192.168.8.1";
-      };
-    };
-  };
+  networking.networkmanager.enable = true;
+
+  # systemd.network = {
+  #   enable = true;
+  #   wait-online.enable = false;
+  #   networks."10-lan" = {
+  #     matchConfig.Name = "enp0s31f6";
+  #     address = [
+  #       "192.168.8.30/24"
+  #     ];
+  #     networkConfig = {
+  #       Gateway = "192.168.8.1";
+  #       DNS = "192.168.8.1";
+  #     };
+  #   };
+  # };
 
 
   boot.loader.grub = {
