@@ -29,7 +29,7 @@
     file
     emacs
     tmux
-    silver-searcher
+    (pkgs.silver-searcher-ng or pkgs.silver-searcher)
     ranger
     man
     htop

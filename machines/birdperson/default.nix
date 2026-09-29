@@ -6,13 +6,15 @@
     ../../profiles/desktop.nix
     ../../modules/bluetooth.nix
     ../../modules/incus.nix
-    ../../modules/i3-xfce.nix
+    # ../../modules/i3-xfce.nix
     ../../modules/claude-code.nix
-    # ../../modules/plasma.nix
-    # ../../modules/jovian.nix
+    ../../modules/plasma.nix
+    ../../modules/jovian.nix
   ];
 
   networking.hostName = "birdperson";
+
+  jovian.hardware.has.amd.gpu = true;
 
   networking.networkmanager.enable = true;
 

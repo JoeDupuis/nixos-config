@@ -12,6 +12,8 @@
 
   services.xserver.displayManager.lightdm.enable = true;
 
+  services.xrdp.defaultWindowManager = "/run/current-system/sw/bin/xfce4-session";
+
   services.xserver.desktopManager.xfce = {
     enable = true;
     enableXfwm = false;

@@ -21,8 +21,6 @@
   };
 
   services.xrdp.enable = true;
-  #services.xrdp.defaultWindowManager = "startxfce4";
-  services.xrdp.defaultWindowManager = "/run/current-system/sw/bin/xfce4-session";
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [3389 3000]; #xrdp
 
   programs._1password.enable = true;
@@ -34,7 +32,7 @@
     nodejs
     gist
     ngrok
-    nodePackages.localtunnel
+    localtunnel
     insomnia
     postman
     ledger
@@ -46,7 +44,7 @@
     usbutils
     nixos-generators
     polkit_gnome
-    xorg.xmodmap
+    xmodmap
     inetutils
     ntfs3g
     chromium
