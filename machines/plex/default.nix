@@ -1,4 +1,13 @@
 { config, lib, pkgs, ... }:
+let
+  pkgs-unstable = import (
+    let revision = "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504"; in
+    builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/${revision}.tar.gz";
+      sha256 = "177diqkiwphjyqpk2n6nisayx840x28ksvq99kkyi2xsn37fp4md";
+    }
+  ) { system = pkgs.stdenv.hostPlatform.system; };
+in
 {
   imports = [
     <nixpkgs/nixos/modules/virtualisation/lxc-container.nix>
@@ -78,6 +87,7 @@
 
     prowlarr = {
       enable = true;
+      package = pkgs-unstable.prowlarr;
       #openFirewall = true;
     };
 
@@ -100,7 +110,10 @@
       group = "plex";
     };
 
-    flaresolverr.enable = true;
+    flaresolverr = {
+      enable = true;
+      package = pkgs-unstable.flaresolverr;
+    };
 
     nginx = {
       enable = true;
