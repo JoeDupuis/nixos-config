@@ -177,7 +177,8 @@ in
 
   };
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 config.services.qbittorrent.torrentingPort ];
+  networking.firewall.allowedUDPPorts = [ config.services.qbittorrent.torrentingPort ];
 
 
   networking.hostName = "plex";
