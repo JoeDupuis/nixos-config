@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+  imports = [ ./tailscale-package.nix ];
+
   services.tailscale = {
     enable = true;
   };
